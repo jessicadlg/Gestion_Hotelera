@@ -2,10 +2,8 @@
 package Logica;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 @Entity 
 public class Huesped extends Persona{

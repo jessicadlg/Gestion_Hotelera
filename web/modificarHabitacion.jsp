@@ -1,3 +1,4 @@
+<%@page import="Logica.Habitacion"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -198,16 +199,20 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 mx-auto">
+                        <div class="col-lg-12  col-sm-12 mx-auto">
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
-                                <div class="card-header text-center">Registro de habitación</div>
+                                <div class="card-header text-center">Modificar Habitacion</div>
                                 <div class="card-body">
-                                    <form action="SvHabitacion" method="post">
+                                    <form action="SvEditar" method="get">
+                                        <!--  //traigo con la session-->
+                                        <%
+                                            Habitacion hab = (Habitacion) misession.getAttribute("habitacion");
+                                            {%>
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3">
                                                 <label for="tematica">Nombre de la habitación</label>
-                                                <select name="tematica" id="tematica" class="form-control">
-                                                    <option value="" readonly="reandonly"   >Ingrese la temática</option>
+                                                <select value="<%=hab.getTemática()%>" name="tematica" id="tematica" class="form-control">
+                                                    <option value="" disabled="disabled"   >Ingrese la temática</option>
                                                     <option value="Cataratas del Iguazú">Cataratas del Iguazú</option>
                                                     <option value="Glaciar Perito Moreno">Glaciar Perito Moreno</option>
                                                     <option value="Salinas Grandes">Salinas Grandes</option>
@@ -218,12 +223,12 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="piso">Piso:</label>
-                                                <input name="piso" type="number" class="form-control" id="piso" placeholder="" value="" required>
+                                                <input name="piso" type="number" class="form-control" id="piso" placeholder="" value="<%=hab.getPiso()%>" required>
                                             </div>
 
                                             <div class="col-md-6 mb-3">
                                                 <label for="tipo">Tipo de habitación</label>
-                                                <select name="tipo" id="tipo" class="form-control">
+                                                <select name="tipo" value="<%=hab.getTipoHabitacion()%>" id="tipo" class="form-control">
                                                     <option value="" disabled="disabled" >Ingrese el tipo de habitación..</option>
                                                     <option value="Simple">Simple</option>
                                                     <option value="Double">Double</option>
@@ -233,26 +238,26 @@
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="precio">Precio:</label>
-                                                <input name="precio" type="text" class="form-control" id="precio" placeholder="" value="" required>
+                                                <input name="precio" type="text" class="form-control" id="precio" value="<%=hab.getPrecio()%>"  required>
                                             </div>
+                                            <input type="hidden" name="id_numero" value="<%=hab.getId_numero()%>">
 
                                             <div class="mx-auto">
-                                                <button class="btn btn-secondary" type="submit">Enviar</button>
+                                                <button class="btn btn-info" type="submit">Modificar</button>
                                             </div>
                                         </div>
-                                    </form>
+                                        <%}%>
+                                    </form> 
                                 </div>
-                            </div>    
-                        </div>  
-                    </div>
+                            </div>
+                        </div>    
+                    </div>  
                 </div>
-                <!-- /page content -->
+                <!-- page content -->
 
             </div>
         </div>
-
-
-        <!-- footer content -->
+        <!-- /footer content -->s
         <footer class="footer">
             <div class="container-fluid">
                 <p class="copyright text-center">
@@ -307,5 +312,7 @@
         <script src="assets/build/js/custom.min.js"></script>
     </body>
 </html>
+
+
 
 

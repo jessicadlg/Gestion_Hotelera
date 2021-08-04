@@ -1,17 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
-        <!--     Fonts and icons     -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-        <!-- CSS Files -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-        <title>Registro habitación</title>
+
+        <title>Administracion!! | </title>
+
+        <!-- Bootstrap -->
+        <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+        <!-- bootstrap-progressbar -->
+        <link href="assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+        <!-- bootstrap-daterangepicker -->
+        <link href="assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+        <!-- Custom Theme Style -->
+        <link href="assets/build/css/custom.min.css" rel="stylesheet">
     </head>
-    <body>
+
+    <body class="nav-md">
         <%
             HttpSession misession = request.getSession();
             String usu = (String) misession.getAttribute("usuario");
@@ -19,116 +40,165 @@
                 response.sendRedirect("login.jsp");
             } else {
         %>
-
         <% }%>
-        <div class="wrapper">
-            <div class="sidebar">
-                <div class="sidebar-wrapper">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nc-icon nc-zoom-split"></i>
-                                <span class="d-lg-block">&nbsp;Search</span>
-                            </a>
-                        </li>
-                        <div class="division"> </div>
-                        <li class="nav-item active">
-                            <a class="nav-link m-3" href="index.jsp">  
-                                <p>Panel administrativo</p>
-                            </a>
-                        </li>
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Las Termas</span></a>
+                        </div>
 
-                        <li>
-                            <a class="nav-link" href="./user.html">
-                                <i class="nc-icon nc-circle-09"></i>
-                                <p>Perfil de Usuario</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./tabla.jsp">
+                        <div class="clearfix"></div>
 
-                                <i class="nc-icon nc-grid-45"></i>
-                                <p>Ver tablas</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./altaHuesped.jsp">
-                                <i class="nc-icon nc-single-02"></i>
-                                <p>Registro Huesped</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./icons.html">
-                                <i class="nc-icon nc-notes"></i>
-                                <p>Registro Empleado</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./maps.html">
-                                <i class="nc-icon nc-istanbul"></i>
-                                <p>Registro Habitación</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./notifications.html">
-                                <i class="nc-icon nc-bell-55"></i>
-                                <p>Reservas</p>
-                            </a>
-                        </li>
-                        <i class="nc-icon nc-paper-2"></i>
-                    </ul>
+                        <!-- menu info panel izq -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="assets/images/img.jpg" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Bienvenido,</span>
+                                <h2><%=request.getSession().getAttribute("usuario")%></h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>Panel de administracion</h3>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="altaEmpleado.jsp">Registrar empleados</a></li>
+                                            <li><a href="verEmpleados.jsp">Ver empleados</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-table"></i> Tablas <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="verEmpleados.html">Ver empleados.</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="altaReserva.jsp">Registrar reservas</a></li>
+                                            <li><a href="verReservas.jsp">Ver reservas</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-star"></i> Habitaciones <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="altaHabitacion.jsp">Registrar habitacion</a></li>
+                                            <li><a href="verHabitaciones.jsp">Ver habitaciones</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-users"></i>Huesped<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="altaHuesped.jsp">Registro de huesped</a></li>
+                                            <li><a href="verHuespedes.jsp">Ver huesped</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+
+                    </div>
                 </div>
-            </div>
-            <div class="main-panel">
-                <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container-fluid">
-                        <div class="title">
-                            <a href="index.jsp" class="simple-text">Hotel Las Termas</a>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
-                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-bar burger-lines"></span>
-                            <span class="navbar-toggler-bar burger-lines"></span>
-                            <span class="navbar-toggler-bar burger-lines"></span>
-                        </button> 
-                        <div class="collapse navbar-collapse justify-content-end" id="navigation">
-
-                            <!-- Topbar Navbar -->
-                            <ul class="navbar-nav ml-auto">
-                                <!-- Nav Item - User Information -->
-                                <li class="nav-item dropdown no-arrow">
-                                    <a class="nav-link" href="#>
-                                       <span class=" no-icon mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                        <p><%=request.getSession().getAttribute("usuario")%></p>
+                        <nav class="nav navbar-nav">
+                            <ul class=" navbar-right">
+                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
+                                       data-toggle="dropdown" aria-expanded="false">
+                                        <img src="assets/images/img.jpg" alt=""><%=request.getSession().getAttribute("usuario")%>
                                     </a>
-                                </li>    
-                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="no-icon"> <img class="img-profile rounded-circle" src="assets/img/undraw_profile_1.svg" alt=""></span>
-                                    </a>
-                                    <!-- Dropdown - User Information -->
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                         aria-labelledby="userDropdown">
-                                        <a class="dropdown-item" href="#">
-                                            Mi perfil
-
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="javascript:;">Completar perfil</a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Configuraciones</span>
                                         </a>
-                                        <a class="dropdown-item" href="#">
-                                            Configuraciones
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                            Cerrar sesión
-                                        </a>
+                                        <a class="dropdown-item" href="#;">Ayuda</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
-                                </li>    
+                                </li>
+                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <div class="text-center">
+                                            <a class="dropdown-item">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </ul>
-                        </div>
-                    </div> 
-                </nav>
-                <!-- End Navbar -->
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="col-md-9 mb-3 mx-auto">
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 mx-auto">
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
                                 <div class="card-header text-center">Registro de habitación</div>
                                 <div class="card-body">
@@ -137,10 +207,10 @@
                                             <div class="col-md-12 mb-3">
                                                 <label for="tematica">Nombre de la habitación</label>
                                                 <select name="tematica" id="tematica" class="form-control">
-                                                    <option value="" disabled="disabled"   >Ingrese la temática</option>
-                                                    <option value="Cataratas">Cataratas del Iguazú</option>
-                                                    <option value="Glaciar">Glaciar Perito Moreno</option>
-                                                    <option value="Salinas">Salinas Grandes</option>
+                                                    <option value="" readonly="reandonly"   >Ingrese la temática</option>
+                                                    <option value="Cataratas del Iguazú">Cataratas del Iguazú</option>
+                                                    <option value="Glaciar Perito Moreno">Glaciar Perito Moreno</option>
+                                                    <option value="Salinas Grandes">Salinas Grandes</option>
                                                     <option value="Selva Misionera">Selva Misionera</option>
                                                     <option value="Bañado La Estrella">Bañado La Estrella</option>
                                                     <option value="Río Mina Clavero">Río Mina Clavero</option>
@@ -167,7 +237,7 @@
                                             </div>
 
                                             <div class="mx-auto">
-                                                <button class="btn" type="submit">Enviar</button>
+                                                <button class="btn btn-secondary" type="submit">Enviar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -176,42 +246,66 @@
                         </div>  
                     </div>
                 </div>
+                <!-- /page content -->
+
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <p class="copyright text-center">
-                        ©
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        creado por<a href=""> Jessica Delgado</a>
-                    </p>
-                </div>
-            </footer>
         </div>
+
+
+        <!-- footer content -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <p class="copyright text-center">
+                    ©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    creado por<a href=""> Jessica Delgado</a>
+                </p>
+            </div>
+        </footer>
+        <!-- /footer content -->
+        <!-- jQuery -->
+        <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- FastClick -->
+        <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="assets/vendors/nprogress/nprogress.js"></script>
+        <!-- Chart.js -->
+        <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+        <!-- gauge.js -->
+        <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <!-- iCheck -->
+        <script src="assets/vendors/iCheck/icheck.min.js"></script>
+        <!-- Skycons -->
+        <script src="assets/vendors/skycons/skycons.js"></script>
+        <!-- Flot -->
+        <script src="assets/vendors/Flot/jquery.flot.js"></script>
+        <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
+        <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
+        <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
+        <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
+        <!-- Flot plugins -->
+        <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+        <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+        <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
+        <!-- DateJS -->
+        <script src="assets/vendors/DateJS/build/date.js"></script>
+        <!-- JQVMap -->
+        <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+        <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="assets/vendors/moment/min/moment.min.js"></script>
+        <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="assets/build/js/custom.min.js"></script>
     </body>
-    <!--   Core JS Files   -->
-    <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="assets/js/plugins/bootstrap-switch.js"></script>
-
-    <!--  Chartist Plugin  
-    <script src="../assets/js/plugins/chartist.min.js"></script>-->
-    <!--  Notifications Plugin    
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>-->
-    <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-    <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
-    <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
-    <script type="text/javascript">
-                            $(document).ready(function () {
-                                // Javascript method's body can be found in assets/js/demos.js
-                                demo.initDashboardPageCharts();
-
-                                demo.showNotification();
-
-                            });
-    </script>
 </html>
+
+

@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="shortcut icon" href="#" />
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendors/bootstrap/dist/css/bootstrap.min.css">
         <title>Gestion de Reservas-Login</title>
     </head>
     <body>
         <header class="mb-5">
             <h1 class="text-center p-3">Gestión Hotelera</h1>
         </header>
-        <div class="col-lg-8 mx-auto  ">
+        <div class="col-lg-9 mx-auto  ">
             <div class="card shadow-lg p-3 mx-auto mb-5 bg-white ">
                 <div class="card-header text-center">Inicio de sesión</div>
                 <div class="card-body">
@@ -26,14 +26,15 @@
                                 <label for="contrasenia">Contraseña</label>
                                 <input name="contrasenia" type="password" class="form-control" required>
                             </div>
+                            <div class="mx-auto">
+                            <button class="btn btn-secondary  mb-3" type="submit">Enviar</button>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn" type="submit">Enviar</button>
                         </div>
+                        
                     </form>
                 </div>
             </div> 
         </div>       
-        <script src="js/bootstrap.min.js"></script>
+        <script src="assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
 </html>

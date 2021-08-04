@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="Logica.Empleado"%>
+<%@page import="java.util.List"%>
+<%@page import="Logica.Controladora"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -197,57 +201,68 @@
 
                 <!-- page content -->
                 <div class="right_col" role="main">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 mx-auto">
-                            <div class="card shadow-lg p-3 mb-5 bg-white ">
-                                <div class="card-header text-center">Registro de habitación</div>
-                                <div class="card-body">
-                                    <form action="SvHabitacion" method="post">
-                                        <div class="form-row">
-                                            <div class="col-md-12 mb-3">
-                                                <label for="tematica">Nombre de la habitación</label>
-                                                <select name="tematica" id="tematica" class="form-control">
-                                                    <option value="" readonly="reandonly"   >Ingrese la temática</option>
-                                                    <option value="Cataratas del Iguazú">Cataratas del Iguazú</option>
-                                                    <option value="Glaciar Perito Moreno">Glaciar Perito Moreno</option>
-                                                    <option value="Salinas Grandes">Salinas Grandes</option>
-                                                    <option value="Selva Misionera">Selva Misionera</option>
-                                                    <option value="Bañado La Estrella">Bañado La Estrella</option>
-                                                    <option value="Río Mina Clavero">Río Mina Clavero</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="piso">Piso:</label>
-                                                <input name="piso" type="number" class="form-control" id="piso" placeholder="" value="" required>
-                                            </div>
+                   <div class="row">
+                            <div class="col-md-12">
+                                <div class="card strpied-tabled-with-hover">
+                                    <div class="card-header ">
+                                        <h4 class="card-title">Listado de empleados</h4>
+                                    </div>
+                                    <div class="card-body table-full-width table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                            <th>DNI</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Dirección</th>
+                                            <th>Fecha de Nacimiento</th>
+                                            <th>Cargo</th>
+                                            <th class="text-center">Acciones</th>
 
-                                            <div class="col-md-6 mb-3">
-                                                <label for="tipo">Tipo de habitación</label>
-                                                <select name="tipo" id="tipo" class="form-control">
-                                                    <option value="" disabled="disabled" >Ingrese el tipo de habitación..</option>
-                                                    <option value="Simple">Simple</option>
-                                                    <option value="Double">Double</option>
-                                                    <option value="Triple">Triple</option>
-                                                    <option value="Multiple">Multiple</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label for="precio">Precio:</label>
-                                                <input name="precio" type="text" class="form-control" id="precio" placeholder="" value="" required>
-                                            </div>
-
-                                            <div class="mx-auto">
-                                                <button class="btn btn-secondary" type="submit">Enviar</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <% Controladora control = new Controladora();
+                                                    List<Empleado> listaEmpleados = control.traerEmpleados();
+                                                    for (Empleado emp : listaEmpleados) { %>
+                                                <tr>
+                                                    <%String dni = emp.getDNI();%>
+                                                    <td><%=dni%></td>
+                                                    <%String nomb = emp.getNombre();%>
+                                                    <td><%=nomb%></td>
+                                                    <%String ape = emp.getApellido();%>
+                                                    <td><%=ape%></td>
+                                                    <%String dir = emp.getDireccion();%>
+                                                    <td><%=dir%></td>                                
+                                                    <%Date fec = emp.getFechaNac();%>
+                                                    <td><%=fec%></td> 
+                                                    <%String cargo = emp.getCargo();%>
+                                                    <td><%=cargo%></td>  
+                                                     <%long id = emp.getId_numero();%>   
+                                                     
+                                                    <td class="align-middle">
+                                                         <form name="borrarForm" action="SvEliminar" method="POST"> 
+                                                        <input type="hidden" name="id_numero" value="<%=id%>">
+                                                        <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i>Eliminar </button>
+                                                       </form>
+                                                        
+                                                       <form name="editarForm" action="SvEditar" method="POST">
+                                                        <input type="hidden" name="id_numero" value="<%=id%>">
+                                                        <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i>Editar </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>   
+                                                <%}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>    
-                        </div>  
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+                </div >
                 <!-- /page content -->
-
             </div>
         </div>
 
@@ -265,47 +280,52 @@
             </div>
         </footer>
         <!-- /footer content -->
-        <!-- jQuery -->
-        <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- FastClick -->
-        <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="assets/vendors/nprogress/nprogress.js"></script>
-        <!-- Chart.js -->
-        <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
-        <!-- gauge.js -->
-        <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
-        <!-- bootstrap-progressbar -->
-        <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-        <!-- iCheck -->
-        <script src="assets/vendors/iCheck/icheck.min.js"></script>
-        <!-- Skycons -->
-        <script src="assets/vendors/skycons/skycons.js"></script>
-        <!-- Flot -->
-        <script src="assets/vendors/Flot/jquery.flot.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
-        <!-- Flot plugins -->
-        <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
-        <!-- DateJS -->
-        <script src="assets/vendors/DateJS/build/date.js"></script>
-        <!-- JQVMap -->
-        <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-        <!-- bootstrap-daterangepicker -->
-        <script src="assets/vendors/moment/min/moment.min.js"></script>
-        <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    </div>
+</div>
 
-        <!-- Custom Theme Scripts -->
-        <script src="assets/build/js/custom.min.js"></script>
-    </body>
+<!-- jQuery -->
+<script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="assets/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="assets/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="assets/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="assets/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="assets/vendors/Flot/jquery.flot.js"></script>
+<script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="assets/vendors/Flot/jquery.flot.time.js"></script>
+<script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="assets/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="assets/vendors/moment/min/moment.min.js"></script>
+<script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="assets/build/js/custom.min.js"></script>
+
+</body>
+
 </html>
 
 

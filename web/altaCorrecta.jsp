@@ -1,6 +1,5 @@
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,5 +16,7 @@
         %>
         <% }%>
         <h1>Realizado correctamente!</h1>
+        <a href="index.jsp" class="btn" type="submit">Volver</a>
+
     </body>
 </html>

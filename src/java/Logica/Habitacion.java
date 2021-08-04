@@ -2,14 +2,17 @@ package Logica;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Habitacion implements Serializable {
 
     @Id
-    String id_numero;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    int id_numero;
     String piso;
     String temática;
     double precio;
@@ -18,7 +21,7 @@ public class Habitacion implements Serializable {
     public Habitacion() {
     }
 
-    public Habitacion(String id_numero, String piso, String temática, double precio, String tipoHabitacion) {
+    public Habitacion(int id_numero, String piso, String temática, double precio, String tipoHabitacion) {
         this.id_numero = id_numero;
         this.piso = piso;
         this.temática = temática;
@@ -26,11 +29,11 @@ public class Habitacion implements Serializable {
         this.tipoHabitacion = tipoHabitacion;
     }
 
-    public String getId_numero() {
+    public int getId_numero() {
         return id_numero;
     }
 
-    public void setId_numero(String id_numero) {
+    public void setId_numero(int id_numero) {
         this.id_numero = id_numero;
     }
 

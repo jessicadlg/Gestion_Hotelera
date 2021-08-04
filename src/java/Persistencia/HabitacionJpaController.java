@@ -7,7 +7,6 @@ package Persistencia;
 
 import Logica.Habitacion;
 import Persistencia.exceptions.NonexistentEntityException;
-import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,10 +17,6 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-/**
- *
- * @author 003578613
- */
 public class HabitacionJpaController implements Serializable {
 
     public HabitacionJpaController(EntityManagerFactory emf) {
@@ -36,18 +31,13 @@ public class HabitacionJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Habitacion habitacion) throws PreexistingEntityException, Exception {
+    public void create(Habitacion habitacion) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(habitacion);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findHabitacion(habitacion.getId_numero()) != null) {
-                throw new PreexistingEntityException("Habitacion " + habitacion + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -65,7 +55,7 @@ public class HabitacionJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = habitacion.getId_numero();
+                int id = habitacion.getId_numero();
                 if (findHabitacion(id) == null) {
                     throw new NonexistentEntityException("The habitacion with id " + id + " no longer exists.");
                 }
@@ -78,7 +68,7 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException {
+    public void destroy(int id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -123,7 +113,7 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public Habitacion findHabitacion(String id) {
+    public Habitacion findHabitacion(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Habitacion.class, id);

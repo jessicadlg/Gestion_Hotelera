@@ -19,6 +19,8 @@ public class Reserva implements Serializable {
     Date checkIn;
     @Temporal(TemporalType.DATE)
     Date checkOut;
+     @Temporal(TemporalType.DATE)
+    Date fechaDeCarga;
     boolean estaReservada;
     int cantidadPersonas;
     @OneToMany
@@ -33,12 +35,16 @@ public class Reserva implements Serializable {
     public Reserva() {
     }
 
-    public Reserva(int id_reserva, Date checkIn, Date checkOut, boolean estaReservada, int cantidadPersonas) {
+    public Reserva(int id_reserva, Date checkIn, Date checkOut, Date fechaDeCarga, boolean estaReservada, int cantidadPersonas, List<Habitacion> listaHabitaciones, List<Huesped> listaHuesped, List<UsuarioAdmin> listaUsuarios) {
         this.id_reserva = id_reserva;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.fechaDeCarga = fechaDeCarga;
         this.estaReservada = estaReservada;
         this.cantidadPersonas = cantidadPersonas;
+        this.listaHabitaciones = listaHabitaciones;
+        this.listaHuesped = listaHuesped;
+        this.listaUsuarios = listaUsuarios;
     }
 
     public int getId_reserva() {
@@ -65,6 +71,14 @@ public class Reserva implements Serializable {
         this.checkOut = checkOut;
     }
 
+    public Date getFechaDeCarga() {
+        return fechaDeCarga;
+    }
+
+    public void setFechaDeCarga(Date fechaDeCarga) {
+        this.fechaDeCarga = fechaDeCarga;
+    }
+
     public boolean isEstaReservada() {
         return estaReservada;
     }
@@ -80,6 +94,32 @@ public class Reserva implements Serializable {
     public void setCantidadPersonas(int cantidadPersonas) {
         this.cantidadPersonas = cantidadPersonas;
     }
+
+    public List<Habitacion> getListaHabitaciones() {
+        return listaHabitaciones;
+    }
+
+    public void setListaHabitaciones(List<Habitacion> listaHabitaciones) {
+        this.listaHabitaciones = listaHabitaciones;
+    }
+
+    public List<Huesped> getListaHuesped() {
+        return listaHuesped;
+    }
+
+    public void setListaHuesped(List<Huesped> listaHuesped) {
+        this.listaHuesped = listaHuesped;
+    }
+
+    public List<UsuarioAdmin> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<UsuarioAdmin> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
+   
     
     
 }

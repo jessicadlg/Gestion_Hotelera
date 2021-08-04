@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "SvEmpleado", urlPatterns = {"/SvEmpleado"})
-public class SvEmpleado extends HttpServlet {
+public class SvHuesped extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class SvEmpleado extends HttpServlet {
          String apellido = request.getParameter("apellido");
        
          String direccion = request.getParameter("direccion");
-        String cargo = request.getParameter("cargo");
+        String profesion = request.getParameter("profesion");
          String fechaNac = request.getParameter("fechaNac");
 
 
@@ -44,7 +44,7 @@ public class SvEmpleado extends HttpServlet {
         request.getSession().setAttribute("nombre", nombre);
          request.getSession().setAttribute("apellido", apellido);
         request.getSession().setAttribute("direccion", direccion);
-        request.getSession().setAttribute("cargo", cargo);
+        request.getSession().setAttribute("profesion", profesion);
                  request.getSession().setAttribute("fechaNac", fechaNac);
 
   
@@ -53,7 +53,7 @@ public class SvEmpleado extends HttpServlet {
          /*conecto cn la logica */
          Controladora control= new Controladora();
         Date fecha= control.deStringToDate(fechaNac);
-         control.crearAltaEmpleado(dni,nombre, apellido,fecha,direccion,cargo);
+         control.crearAltaEmpleado(dni,nombre, apellido,fecha,direccion,profesion);
         /*armar la respuesta */
          response.sendRedirect("altaCorrecta.jsp");    }
 
