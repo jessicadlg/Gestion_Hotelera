@@ -36,6 +36,7 @@ public class Controladora {
 
         controlPersis.crearAltaEmpleado(emp);
     }
+
     public void crearAltaHuesped(String dni, String nombre, String apellido, Date fecha, String direccion, String profesion) {
         Huesped hues = new Huesped();
 
@@ -48,6 +49,7 @@ public class Controladora {
 
         controlPersis.crearAltaHuesped(hues);
     }
+
     public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
         Habitacion hab = new Habitacion();
         hab.setTemática(tematica);
@@ -57,47 +59,55 @@ public class Controladora {
 
         controlPersis.crearAltaHabitacion(hab);
     }
+
     public List<Habitacion> traerHabitaciones() {
         return controlPersis.traerHabitaciones();
     }
+
     public void eliminarHabitacion(int id_numero) {
         controlPersis.eliminarHabitacion(id_numero);
     }
-   public Habitacion buscarHabitacion(int id_numero){
+
+    public Habitacion buscarHabitacion(int id_numero) {
         return controlPersis.buscarHabitacion(id_numero);
     }
-     public void modificarHabitacion(Habitacion hab) {
+
+    public void modificarHabitacion(Habitacion hab) {
         controlPersis.modificarHabitacion(hab);
     }
-      public List<Empleado> traerEmpleados() {
+
+    public List<Empleado> traerEmpleados() {
         return controlPersis.traerEmpleados();
     }
-       public void eliminarEmpleado(long id_numero) {
+
+    public void eliminarEmpleado(long id_numero) {
         controlPersis.eliminarEmpleado(id_numero);
     }
 
-    public Empleado buscarEmleado(long id_numero){
+    public Empleado buscarEmleado(long id_numero) {
         return controlPersis.buscarEmpleado(id_numero);
     }
-     public void modificarEmpleado(Empleado emp) {
+
+    public void modificarEmpleado(Empleado emp) {
         controlPersis.modificarEmpleado(emp);
     }
 
-      public List<Huesped> traerHuespedes() {
+    public List<Huesped> traerHuespedes() {
         return controlPersis.traerHuespedes();
     }
-       public void eliminarHuesped(long id_numero) {
+
+    public void eliminarHuesped(long id_numero) {
         controlPersis.eliminarEmpleado(id_numero);
     }
 
-    public Empleado buscarHuesped(long id_numero){
+    public Empleado buscarHuesped(long id_numero) {
         return controlPersis.buscarEmpleado(id_numero);
     }
-     public void modificarHuesped(Huesped hues) {
+
+    public void modificarHuesped(Huesped hues) {
         controlPersis.modificarHuesped(hues);
     }
 
-      
     //Convierte un String a un tipo DATE en formato dd-MM-yyyy
     //@return Retorna la fecha en formato Date
     public static synchronized java.util.Date deStringToDate(String fecha) {
@@ -112,5 +122,3 @@ public class Controladora {
         }
     }
 }
-
-

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "SvEmpleado", urlPatterns = {"/SvEmpleado"})
+@WebServlet(name = "SvHuesped", urlPatterns = {"/SvHuesped"})
 public class SvHuesped extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -53,15 +53,11 @@ public class SvHuesped extends HttpServlet {
          /*conecto cn la logica */
          Controladora control= new Controladora();
         Date fecha= control.deStringToDate(fechaNac);
-         control.crearAltaEmpleado(dni,nombre, apellido,fecha,direccion,profesion);
+         control.crearAltaHuesped(dni,nombre, apellido,fecha,direccion,profesion);
         /*armar la respuesta */
          response.sendRedirect("altaCorrecta.jsp");    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+  
     @Override
     public String getServletInfo() {
         return "Short description";

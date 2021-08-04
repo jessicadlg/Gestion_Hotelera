@@ -75,11 +75,7 @@
                                             <li><a href="verEmpleados.jsp">Ver empleados</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-table"></i> Tablas <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="verEmpleados.html">Ver empleados.</a></li>
-                                        </ul>
-                                    </li>
+
                                     <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="altaReserva.jsp">Registrar reservas</a></li>
@@ -197,15 +193,24 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 ">
-                            <div class="x_panel tile fixed_height_320">
-
-                                
-                                    <h4>App Usage across versions</h4>
-                            </div>
+                         <div class="col-md-8 col-sm-8 ">
+                                 <h2>Gestión hotelera</h2>               
+                            
                         </div>
+                         <div class="title_right">
+                                    <div class="col-md-12 col-sm-12   form-group pull-right top_search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Buscar...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button"> <i
+                                                        class="fa fa-arrow-right"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                       
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -213,12 +218,17 @@
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                Web diseñada por <a href="#">Delgado Jessica</a>
-            </div>
-            <div class="clearfix"></div>
-        </footer>
+        <footer class="footer">
+                <div class="container-fluid">
+                    <p class="copyright text-center">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        creado por<a href=""> Jessica Delgado</a>
+                    </p>
+                </div>
+            </footer>
         <!-- /footer content -->
     </div>
 </div>

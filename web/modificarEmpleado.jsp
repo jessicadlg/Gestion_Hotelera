@@ -1,6 +1,4 @@
-<%-- 
-    <h1>Formulario de modificaciòn</h1>8613
---%>
+
 <%@page import="Logica.Persona"%>
 <%@page import="Logica.Empleado"%>
 <!DOCTYPE html>
@@ -14,7 +12,7 @@
         <!-- CSS Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-        <title>Registro empleado</title>
+        <title>Formulario de modificaciòn</title>
     </head>
     <body>
         <%
