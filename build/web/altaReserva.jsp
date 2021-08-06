@@ -10,7 +10,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Administracion!! | </title>
+        <title>Gestión hotelera </title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -68,7 +68,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>Panel de administracion</h3>
+                                <h3>Panel de administración</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -76,7 +76,7 @@
                                             <li><a href="verEmpleados.jsp">Ver empleados</a></li>
                                         </ul>
                                     </li>
-                                    
+
                                     <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="altaReserva.jsp">Registrar reservas</a></li>
@@ -124,67 +124,9 @@
                                             <span>Configuraciones</span>
                                         </a>
                                         <a class="dropdown-item" href="#;">Ayuda</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
+                                        <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="text-center">
-                                            <a class="dropdown-item">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </ul>
                         </nav>
                     </div>
@@ -196,44 +138,59 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 mx-auto">
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
-                                <div class="card-header text-center">Registro de habitación</div>
+                                <div class="card-header text-center">Registro de reserva</div>
                                 <div class="card-body">
-                                    <form action="SvHabitacion" method="post">
+                                    <form action="SvReserva" method="post">
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3">
-                                                <label for="tematica">Nombre de la habitación</label>
-                                                <select name="tematica" id="tematica" class="form-control">
-                                                    <option value="" readonly="reandonly"   >Ingrese la temática</option>
-                                                    <option value="Cataratas del Iguazú">Cataratas del Iguazú</option>
-                                                    <option value="Glaciar Perito Moreno">Glaciar Perito Moreno</option>
-                                                    <option value="Salinas Grandes">Salinas Grandes</option>
-                                                    <option value="Selva Misionera">Selva Misionera</option>
-                                                    <option value="Bañado La Estrella">Bañado La Estrella</option>
-                                                    <option value="Río Mina Clavero">Río Mina Clavero</option>
-                                                </select>
+                                                <label for="fecha_reserva">Fecha de reserva</label>
+                                                <input name="fecha_reserva" type="date" class="form-control" id="fecha_nacimiento"
+                                                       required>          
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="piso">Piso:</label>
-                                                <input name="piso" type="number" class="form-control" id="piso" placeholder="" value="" required>
+                                                <label for="fecha_entrada">Checkin</label>
+                                                <input name="fecha_entrada" type="date" class="form-control" id="fecha_nacimiento"
+                                                       required>          
                                             </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="fecha_salida">Checkout</label>
+                                                <input name="fecha_salida" type="date" class="form-control" id="fecha_nacimiento"
+                                                       required>          
+                                            </div>
+                                            <div class="col-md-6 mb-3 mx-auto">
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-plus-square-o "></i> Mostrar Disponibilidad</button>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="idHuesped">Identificación del Huesped</label>
+                                                <input name="idHuesped" type="text" class="form-control" id="idHuesped"
+                                                       required>          
+                                            </div>
+                                             <div class="col-md-12 mb-3">
+                                                <label for="cantPersonas">Cantidad de personas</label>
+                                                <input name="cantPersonas" type="text" class="form-control" id="cantPersonas"
+                                                       required>          
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="dni_empleado">dni_empleado</label>
+                                                <input name="dni_empleado" type="text" class="form-control" id="dni_empleado"
+                                                       required>          
+                                            </div>
+                                            
 
                                             <div class="col-md-6 mb-3">
-                                                <label for="tipo">Tipo de habitación</label>
-                                                <select name="tipo" id="tipo" class="form-control">
+                                                <label for="tipoHab">Tipo de habitación</label>
+                                                <select name="tipoHab" id="tipoHab" class="form-control">
                                                     <option value="" disabled="disabled" >Ingrese el tipo de habitación..</option>
                                                     <option value="Simple">Simple</option>
                                                     <option value="Double">Double</option>
                                                     <option value="Triple">Triple</option>
                                                     <option value="Multiple">Multiple</option>
+
                                                 </select>
-                                            </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label for="precio">Precio:</label>
-                                                <input name="precio" type="text" class="form-control" id="precio" placeholder="" value="" required>
                                             </div>
 
                                             <div class="mx-auto">
-                                                <button class="btn btn-secondary" type="submit">Enviar</button>
+                                                <button class="btn btn-secondary " type="submit">Enviar</button>
                                             </div>
                                         </div>
                                     </form>

@@ -3,7 +3,6 @@ package Servlets;
 
 import Logica.Controladora;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,11 +22,11 @@ public class SvEliminar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int id_numero = Integer.parseInt(request.getParameter("id_numero"));
-        System.out.println("la id es "  + id_numero);
+        int id_numHab = Integer.parseInt(request.getParameter("id_numHab"));
+        System.out.println("la id es "  + id_numHab);
         
        Controladora control = new Controladora();
-        control.eliminarHabitacion(id_numero);
+        control.eliminarHabitacion(id_numHab);
         //actualizo mi lista de empleados
        // request.getSession().setAttribute("listaEmpleados", control.traerEmpleados());
         response.sendRedirect("verHabitaciones.jsp");

@@ -82,7 +82,7 @@ public class ControladoraPersistencia {
      public void crearAltaHuesped(Huesped hues) {
         hueJpa.create(hues);
     }
-       public List<Huesped> traerHuespedes() {
+    public List<Huesped> traerHuespedes() {
         return hueJpa.findHuespedEntities();
     }
        public void eliminarHuesped(long id_numero) {
@@ -104,4 +104,14 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void crearAltaUsuario(UsuarioAdmin usu) {
+        try {
+            usuJpa.create(usu);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+   
 }

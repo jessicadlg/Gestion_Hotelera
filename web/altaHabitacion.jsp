@@ -10,7 +10,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Administracion!! | </title>
+        <title>Gestión hotelera </title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Las Termas</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Paisajes</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -68,7 +68,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>Panel de administracion</h3>
+                                <h3>Panel de administración</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -76,7 +76,7 @@
                                             <li><a href="verEmpleados.jsp">Ver empleados</a></li>
                                         </ul>
                                     </li>
-                                    
+
                                     <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="altaReserva.jsp">Registrar reservas</a></li>
@@ -123,8 +123,8 @@
                                             <span class="badge bg-red pull-right">50%</span>
                                             <span>Configuraciones</span>
                                         </a>
-                                        <a class="dropdown-item" href="#;">Ayuda</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
+                                        <a class="dropdown-item" href="#">Ayuda</a>
+                                        <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
@@ -229,7 +229,11 @@
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="precio">Precio:</label>
-                                                <input name="precio" type="text" class="form-control" id="precio" placeholder="" value="" required>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">$</span>
+                                                    <input type="text" name="precio" required="" class="form-control" value="10">
+                                                </div>
+
                                             </div>
 
                                             <div class="mx-auto">

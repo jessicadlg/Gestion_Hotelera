@@ -3,7 +3,6 @@
 <%@page import="Logica.Controladora"%>
 <!DOCTYPE html>
 <html lang="es">
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -13,7 +12,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Administracion!! | </title>
+        <title>Gestión hotelera</title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +48,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Las Termas</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Paisajes</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -65,13 +64,12 @@
                             </div>
                         </div>
                         <!-- /menu profile quick info -->
-
                         <br />
 
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>Panel de administracion</h3>
+                                <h3>Panel de administración</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -127,7 +125,7 @@
                                             <span>Configuraciones</span>
                                         </a>
                                         <a class="dropdown-item" href="#;">Ayuda</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
+                                        <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
@@ -218,7 +216,7 @@
                                                 List<Habitacion> listaHabitaciones = control.traerHabitaciones();
                                                 for (Habitacion hab : listaHabitaciones) { %>
                                             <tr>
-                                                <%String tematica = hab.getTemática();%>
+                                                <%String tematica = hab.getTematica();%>
                                                 <td><%=tematica%></td>
                                                 <%String piso = hab.getPiso();%>
                                                 <td><%=piso%></td>
@@ -227,7 +225,7 @@
                                                 <%String tipoHabitacion = hab.getTipoHabitacion();%>
                                                 <td><%=tipoHabitacion%></td>                                
 
-                                                <%int id = hab.getId_numero();%>   
+                                                <%int id = hab.getId_numHab();%>   
 
                                                 <td class="align-middle">
                                                     <div class="form-inline ">

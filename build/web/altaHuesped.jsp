@@ -10,7 +10,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Administracion!! | </title>
+        <title>Gestión hotelera</title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -68,7 +68,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>Panel de administracion</h3>
+                                <h3>Panel de administración</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -76,7 +76,7 @@
                                             <li><a href="verEmpleados.jsp">Ver empleados</a></li>
                                         </ul>
                                     </li>
-                                   
+
                                     <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="altaReserva.jsp">Registrar reservas</a></li>
@@ -124,7 +124,7 @@
                                             <span>Configuraciones</span>
                                         </a>
                                         <a class="dropdown-item" href="#;">Ayuda</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
+                                        <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
@@ -216,7 +216,7 @@
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="fechaNac">Fecha nacimiento:</label>
-                                                <input name="fechaNac" type="date" class="form-control" id="fecha_nacimiento"
+                                                <input name="fechaNac" type="date" placeholder="dd-mm-yyyy" class="form-control" id="fecha_nacimiento"
                                                        required>          
                                             </div>
 
@@ -229,13 +229,16 @@
                                                     <option value="Caballito">Caballito</option>
                                                 </select>
                                             </div>
-                                             <div class="col-md-12 mb-3">
+                                            <div class="col-md-12 mb-3">
                                                 <label for="profesion">Profesión</label>
                                                 <select name="profesion" id="profesion"  class="form-control">
                                                     <option value="">Ingrese su profesión..</option>
-                                                    <option value="Maestro">Maestro</option>
+                                                        <option value="Maestro">Maestro</option>
                                                     <option value="Desarrollador">Desarrollador</option>
                                                     <option value="Ingeniero">Ingeniero</option>
+                                                    <option value="Administrativa">Administrativa</option> 
+                                                    <option value=" Camionero"> Camionero</option>
+                                                    <option value="Recepcionista">Recepcionista</option>
                                                 </select>
                                             </div>
                                             <div class="mx-auto">

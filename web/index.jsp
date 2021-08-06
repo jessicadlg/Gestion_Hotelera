@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-        <title>Administracion!! | </title>
+        <title>Gestión hotelera</title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Las Termas</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Paisajes</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -67,7 +67,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>Panel de administracion</h3>
+                                <h3>Panel de administración</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -123,67 +123,9 @@
                                             <span>Configuraciones</span>
                                         </a>
                                         <a class="dropdown-item" href="#;">Ayuda</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
+                                        <a class="dropdown-item" href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="text-center">
-                                            <a class="dropdown-item">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </ul>
                         </nav>
                     </div>
@@ -193,32 +135,63 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="row">
-                         <div class="col-md-8 col-sm-8 ">
-                                 <h2>Gestión hotelera</h2>               
-                            
+                        <div class="col-md-4 col-sm-4 ">
+                            <h2>Gestión hotelera</h2>               
                         </div>
-                         <div class="title_right">
-                                    <div class="col-md-12 col-sm-12   form-group pull-right top_search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Buscar...">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button"> <i
-                                                        class="fa fa-arrow-right"></i></button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                       
 
-
+                        <div class="col-md-6 col-sm-6   form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"> <i
+                                            class="fa fa-arrow-right"></i></button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- page content -->
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 mx-auto mb-5">
+                            <div class="card shadow-lg p-3 mb-5 bg-white ">
+                                <div class="card-header text-center">Activar de usuario</div>
+                                <div class="card-body">
+                                    <form action="SvLogin" method="post">
+                                        <div class="form-row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="usuario">Usuario</label>
+                                                <input name="usuario" type="text" class="form-control" id="nombre" placeholder="" value=""
+                                                       required>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="contraseña">Contraseña</label>
+                                                <input name="contraseña" type="text" class="form-control" id="apellido" placeholder=""
+                                                       value="" required>
+                                            </div>
+                                            <div class="mx-auto">
+                                                <button class="btn btn-secondary" type="submit">Activar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>    
+                        </div>  
+                    </div>
+
+                    <!-- /page content -->
+
+
+
+
+
                 </div>
             </div>
-        </div>
-        <!-- /page content -->
 
-        <!-- footer content -->
-        <footer class="footer">
+            <!-- /page content -->
+
+            <!-- footer content -->
+            <footer class="footer">
                 <div class="container-fluid">
                     <p class="copyright text-center">
                         ©
@@ -229,50 +202,50 @@
                     </p>
                 </div>
             </footer>
-        <!-- /footer content -->
+            <!-- /footer content -->
+        </div>
     </div>
-</div>
 
-<!-- jQuery -->
-<script src="assets/vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="assets/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="assets/vendors/nprogress/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
-<!-- gauge.js -->
-<script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="assets/vendors/iCheck/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="assets/vendors/skycons/skycons.js"></script>
-<!-- Flot -->
-<script src="assets/vendors/Flot/jquery.flot.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.time.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="assets/vendors/DateJS/build/date.js"></script>
-<!-- JQVMap -->
-<script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
-<script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-<script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="assets/vendors/moment/min/moment.min.js"></script>
-<script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- jQuery -->
+    <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="assets/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="assets/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="assets/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="assets/vendors/Flot/jquery.flot.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="assets/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="assets/vendors/moment/min/moment.min.js"></script>
+    <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<!-- Custom Theme Scripts -->
-<script src="assets/build/js/custom.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="assets/build/js/custom.min.js"></script>
 
 </body>
 

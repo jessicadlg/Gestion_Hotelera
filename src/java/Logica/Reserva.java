@@ -1,36 +1,36 @@
-
 package Logica;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 public class Reserva implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id_reserva;
     @Temporal(TemporalType.DATE)
     Date checkIn;
     @Temporal(TemporalType.DATE)
     Date checkOut;
-     @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     Date fechaDeCarga;
-    boolean estaReservada;
+    boolean estado;
     int cantidadPersonas;
     @OneToMany
-    List<Habitacion>listaHabitaciones;
+    List<Habitacion> listaHabitaciones;
     @OneToMany
-    List<Huesped>listaHuesped;
-     @OneToMany
-    List<UsuarioAdmin>listaUsuarios;
-    
-    
+    List<Huesped> listaHuesped;
+    @OneToMany
+    List<UsuarioAdmin> listaUsuarios;
 
     public Reserva() {
     }
@@ -40,7 +40,7 @@ public class Reserva implements Serializable {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.fechaDeCarga = fechaDeCarga;
-        this.estaReservada = estaReservada;
+        this.estado = estaReservada;
         this.cantidadPersonas = cantidadPersonas;
         this.listaHabitaciones = listaHabitaciones;
         this.listaHuesped = listaHuesped;
@@ -80,11 +80,11 @@ public class Reserva implements Serializable {
     }
 
     public boolean isEstaReservada() {
-        return estaReservada;
+        return estado;
     }
 
     public void setEstaReservada(boolean estaReservada) {
-        this.estaReservada = estaReservada;
+        this.estado = estaReservada;
     }
 
     public int getCantidadPersonas() {
@@ -119,7 +119,4 @@ public class Reserva implements Serializable {
         this.listaUsuarios = listaUsuarios;
     }
 
-   
-    
-    
 }

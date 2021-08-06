@@ -31,7 +31,7 @@ public class SvEditar extends HttpServlet {
 
         Controladora control = new Controladora();
         Habitacion hab = control.buscarHabitacion(id_numero);
-        hab.setTemática(tematica);
+        hab.setTematica(tematica);
         hab.setPiso(piso);
         hab.setTipoHabitacion(tipoHabitacion);
         hab.setPrecio(precio);

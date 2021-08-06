@@ -12,7 +12,7 @@
         <!-- CSS Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
-        <title>Formulario de modificaciòn</title>
+        <title>Formulario de modificación</title>
     </head>
     <body>
         <%
@@ -37,7 +37,7 @@
                         <div class="division"> </div>
                         <li class="nav-item active">
                             <a class="nav-link m-3" href="index.jsp">  
-                                <p>Panel administrativo</p>
+                                <p>Panel de administración</p>
                             </a>
                         </li>
 
@@ -87,7 +87,7 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
                         <div class="title">
-                            <a href="index.jsp" class="simple-text">Hotel Las Termas</a>
+                            <a href="index.jsp" class="simple-text">Hotel Paisajes</a>
                         </div>
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -119,7 +119,7 @@
                                             Configuraciones
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <a class="dropdown-item"  href="login.jsp" data-toggle="modal" data-target="#logoutModal">
                                             Cerrar sesión
                                         </a>
                                     </div>

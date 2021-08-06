@@ -12,29 +12,29 @@ public class Habitacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    int id_numero;
+    int id_numHab;
     String piso;
-    String temática;
+    String tematica;
     double precio;
     String tipoHabitacion;
 
     public Habitacion() {
     }
 
-    public Habitacion(int id_numero, String piso, String temática, double precio, String tipoHabitacion) {
-        this.id_numero = id_numero;
+    public Habitacion(int id_numHab, String piso, String tematica, double precio, String tipoHabitacion) {
+        this.id_numHab = id_numHab;
         this.piso = piso;
-        this.temática = temática;
+        this.tematica = tematica;
         this.precio = precio;
         this.tipoHabitacion = tipoHabitacion;
     }
 
-    public int getId_numero() {
-        return id_numero;
+    public int getId_numHab() {
+        return id_numHab;
     }
 
-    public void setId_numero(int id_numero) {
-        this.id_numero = id_numero;
+    public void setId_numHab(int id_numHab) {
+        this.id_numHab = id_numHab;
     }
 
     public String getPiso() {
@@ -45,12 +45,12 @@ public class Habitacion implements Serializable {
         this.piso = piso;
     }
 
-    public String getTemática() {
-        return temática;
+    public String getTematica() {
+        return tematica;
     }
 
-    public void setTemática(String temática) {
-        this.temática = temática;
+    public void setTematica(String tematica) {
+        this.tematica = tematica;
     }
 
     public double getPrecio() {
@@ -68,5 +68,7 @@ public class Habitacion implements Serializable {
     public void setTipoHabitacion(String tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
+
+   
 
 }

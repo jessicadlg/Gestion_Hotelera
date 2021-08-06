@@ -6,13 +6,13 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="shortcut icon" href="#" />
         <link rel="stylesheet" href="assets/vendors/bootstrap/dist/css/bootstrap.min.css">
-        <title>Gestion de Reservas-Login</title>
+        <title>Gestión Hotelera</title>
     </head>
     <body>
         <header class="mb-5">
             <h1 class="text-center p-3">Gestión Hotelera</h1>
         </header>
-        <div class="col-lg-9 mx-auto  ">
+        <div class="col-lg-4 col-md-4 mx-auto  ">
             <div class="card shadow-lg p-3 mx-auto mb-5 bg-white ">
                 <div class="card-header text-center">Inicio de sesión</div>
                 <div class="card-body">

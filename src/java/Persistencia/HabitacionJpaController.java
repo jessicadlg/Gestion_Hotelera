@@ -55,7 +55,7 @@ public class HabitacionJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = habitacion.getId_numero();
+                int id = habitacion.getId_numHab();
                 if (findHabitacion(id) == null) {
                     throw new NonexistentEntityException("The habitacion with id " + id + " no longer exists.");
                 }
@@ -76,7 +76,7 @@ public class HabitacionJpaController implements Serializable {
             Habitacion habitacion;
             try {
                 habitacion = em.getReference(Habitacion.class, id);
-                habitacion.getId_numero();
+                habitacion.getId_numHab();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The habitacion with id " + id + " no longer exists.", enfe);
             }

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Logica.Huesped"%>
 <%@page import="java.util.Date"%>
 <%@page import="Logica.Empleado"%>
@@ -15,7 +16,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Administracion!! | </title>
+        <title>Gestión hotelera </title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +52,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Las Termas</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Paisajes</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -81,7 +82,7 @@
                                             <li><a href="verEmpleados.jsp">Ver empleados</a></li>
                                         </ul>
                                     </li>
-                                   
+
                                     <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="altaReserva.jsp">Registrar reservas</a></li>
@@ -129,68 +130,10 @@
                                             <span>Configuraciones</span>
                                         </a>
                                         <a class="dropdown-item" href="#;">Ayuda</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
+                                        <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="text-center">
-                                            <a class="dropdown-item">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </ul>
+                              </ul>
                         </nav>
                     </div>
                 </div>
@@ -198,86 +141,87 @@
 
                 <!-- page content -->
                 <div class="right_col" role="main">
-                   <div class="row">
-                            <div class="col-md-12">
-                                <div class="card strpied-tabled-with-hover">
-                                    <div class="card-header ">
-                                        <h4 class="card-title">Listado de huespedes</h4>
-                                    </div>
-                                    <div class="card-body table-full-width table-responsive">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                            <th>DNI</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Dirección</th>
-                                            <th>Fecha de Nacimiento</th>
-                                            <th>Profesión</th>
-                                            <th class="text-center">Acciones</th>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Listado de huespedes</h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                        <th>DNI</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Dirección</th>
+                                        <th>Fecha de Nacimiento</th>
+                                        <th>Profesión</th>
+                                        <th class="text-center">Acciones</th>
 
-                                            </thead>
-                                            <tbody>
-                                                
-                                                <% Controladora control = new Controladora();
-                                                    List<Huesped> listaHuespedes = control.traerHuespedes();
-                                                    for (Huesped hues : listaHuespedes) { %>
-                                                <tr>
-                                                    <%String dni = hues.getDNI();%>
-                                                    <td><%=dni%></td>
-                                                    <%String nomb = hues.getNombre();%>
-                                                    <td><%=nomb%></td>
-                                                    <%String ape = hues.getApellido();%>
-                                                    <td><%=ape%></td>
-                                                    <%String dir = hues.getDireccion();%>
-                                                    <td><%=dir%></td>                                
-                                                    <%Date fec = hues.getFechaNac();%>
-                                                    <td><%=fec%></td> 
-                                                    <%String cargo = hues.getProfesion();%>
-                                                    <td><%=cargo%></td>  
-                                                     <%long id = hues.getId_numero();%>   
-                                                     
-                                                    <td class="align-middle">
-                                                         <form name="borrarForm" action="SvEliminar" method="POST"> 
+                                        </thead>
+                                        <tbody>
+
+                                            <% Controladora control = new Controladora();
+                                                List<Huesped> listaHuespedes = control.traerHuespedes();
+                                                for (Huesped hues : listaHuespedes) { %>
+                                            <tr>
+                                                <%String dni = hues.getDNI();%>
+                                                <td><%=dni%></td>
+                                                <%String nomb = hues.getNombre();%>
+                                                <td><%=nomb%></td>
+                                                <%String ape = hues.getApellido();%>
+                                                <td><%=ape%></td>
+                                                <%String dir = hues.getDireccion();%>
+                                                <td><%=dir%></td>                                
+                                                <%SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+                                                       String fecCadena = sdf.format(hues.getFechaNac());%>
+                                                <td><%=fecCadena%></td>
+                                                <%String profesion = hues.getProfesion();%>
+                                                <td><%=profesion%></td>  
+                                                <%long id = hues.getId_numero();%>   
+
+                                                <td class="align-middle">
+                                                    <form name="borrarForm" action="SvEliminar" method="POST"> 
                                                         <input type="hidden" name="id_numero" value="<%=id%>">
                                                         <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i>Eliminar </button>
-                                                       </form>
-                                                        
-                                                       <form name="editarForm" action="SvEditar" method="POST">
+                                                    </form>
+
+                                                    <form name="editarForm" action="SvEditar" method="POST">
                                                         <input type="hidden" name="id_numero" value="<%=id%>">
                                                         <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i>Editar </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>   
-                                                <%}%>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                    </form>
+                                                </td>
+                                            </tr>   
+                                            <%}%>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                </div >
-                <!-- /page content -->
-            </div>
         </div>
+    </div >
+    <!-- /page content -->
+</div>
+</div>
 
 
-        <!-- footer content -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="copyright text-center">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>
-                    creado por<a href=""> Jessica Delgado</a>
-                </p>
-            </div>
-        </footer>
-        <!-- /footer content -->
+<!-- footer content -->
+<footer class="footer">
+    <div class="container-fluid">
+        <p class="copyright text-center">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            creado por<a href=""> Jessica Delgado</a>
+        </p>
     </div>
+</footer>
+<!-- /footer content -->
+</div>
 </div>
 
 <!-- jQuery -->

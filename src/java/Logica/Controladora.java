@@ -10,6 +10,7 @@ import java.util.List;
 public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 
     public boolean comprobarIngreso(String usuario, String contra) {
         List<UsuarioAdmin> listaUsuarios = controlPersis.traerUsuarios();
@@ -24,35 +25,55 @@ public class Controladora {
         return false;
     }
 
-    public void crearAltaEmpleado(String dni, String nombre, String apellido, Date fecha, String direccion, String cargo) {
+    public void crearAltaEmpleado(String dni, String nombre, String apellido, String direccion, String cargo, String fechaNueva) {
         Empleado emp = new Empleado();
 
         emp.setDNI(dni);
         emp.setNombre(nombre);
         emp.setApellido(apellido);
-        emp.setFechaNac(new Date());
+        //LO PASO DE STRING A DATE P MANDARLO A LA BD
+        Date fechaDate = new Date(fechaNueva);
+        emp.setFechaNac(fechaDate);
         emp.setDireccion(direccion);
         emp.setCargo(cargo);
-
+        emp.setBonificacionesPorDia(0);
+        emp.setUser(null);
         controlPersis.crearAltaEmpleado(emp);
     }
 
-    public void crearAltaHuesped(String dni, String nombre, String apellido, Date fecha, String direccion, String profesion) {
+    public void crearAltaHuesped(String dni, String nombre, String apellido, String direccion, String profesion, String fechaNueva) {
         Huesped hues = new Huesped();
 
         hues.setDNI(dni);
         hues.setNombre(nombre);
         hues.setApellido(apellido);
-        hues.setFechaNac(new Date());
+        Date fechaDate = new Date(fechaNueva);
+        hues.setFechaNac(fechaDate);
         hues.setDireccion(direccion);
         hues.setProfesion(profesion);
 
         controlPersis.crearAltaHuesped(hues);
     }
 
+    //public boolean crear(Date checkin, Date checkout, Date fechaDeReserva, int cantDias,int id_numHab , int cantPersonas,int id_reserva) {}
+    /* int id_reserva = retornarUltIdReserva();
+    Huesped hues = verHuesped(id_numero);
+    Habitacion hab = verHabitacion(id_numHab);
+    Reserva nuevaRes = new Reserva(id_reserva, checkin, checkout, cantDias, tematica, cantPersonas, id_usuario, id_numero);
+    List<Reserva> listadoReservas = cp.traerReservas();
+    List<Habitacion> listadoHabitaciones = cp.traerHabitaciones();
+        for(Reserva res: listadoReservas){
+            if(res.get?algdehabitacion().getId_numHab() == tematica.getId_numHab()){
+              if(nuevaRes.getCheckIn().after(res.getCheckIn()) && nuevaRes.getCheckIn().before(res.getCheckOut())){
+                  System.out.println("esta mal:la nueva reserva esta dentro del rango de fechas de una reserva existente");
+                  return true;
+              }
+              ?
+            }
+}*/
     public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
         Habitacion hab = new Habitacion();
-        hab.setTemática(tematica);
+        hab.setTematica(tematica);
         hab.setPiso(piso);
         hab.setTipoHabitacion(tipoHabitacion);
         hab.setPrecio(precio);
@@ -74,6 +95,18 @@ public class Controladora {
 
     public void modificarHabitacion(Habitacion hab) {
         controlPersis.modificarHabitacion(hab);
+    }
+
+    public void crearAltaUsuario(String usuario, String contra) {
+        UsuarioAdmin usu = new UsuarioAdmin();
+        usu.setUser(usuario);
+        usu.setPassword(contra);
+        controlPersis.crearAltaUsuario(usu);
+
+    }
+
+    public List<UsuarioAdmin> traerUsuarios() {
+        return controlPersis.traerUsuarios();
     }
 
     public List<Empleado> traerEmpleados() {
@@ -108,17 +141,37 @@ public class Controladora {
         controlPersis.modificarHuesped(hues);
     }
 
-    //Convierte un String a un tipo DATE en formato dd-MM-yyyy
-    //@return Retorna la fecha en formato Date
-    public static synchronized java.util.Date deStringToDate(String fecha) {
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy"); //formato guión
-        Date fechaEnviar = null;
-        try {
-            fechaEnviar = df.parse(fecha);
-            return fechaEnviar;
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-            return null;
-        }
+    //apartado metodos para reservas
+    public void crearReserva(String checkinJSP, String checkoutJSP, String fecha_reserva, String idHuesped, String cantPersonas, String dni_empleado, String tipoHab) {
+        Reserva re = new Reserva();
+        re.setCheckIn(checkIn);
     }
+    /* public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
+        Habitacion hab = new Habitacion();
+        hab.setTematica(tematica);
+        hab.setPiso(piso);
+        hab.setTipoHabitacion(tipoHabitacion);
+        hab.setPrecio(precio);
+
+        controlPersis.crearAltaHabitacion(hab);
+    }
+
+    public List<Reserva> traerReservas() {
+        return controlPersis.traerReservas();
+    }
+
+    public void eliminarHabitacion(int id_numero) {
+        controlPersis.eliminarHabitacion(id_numero);
+    }
+
+    public Habitacion buscarReserva(int id_numero) {
+        return controlPersis.buscarReserva(id_numero);
+    }
+
+    public void modificarHabitacion(Habitacion hab) {
+        controlPersis.modificarHabitacion(hab);
+    }
+
+     */
+
 }
