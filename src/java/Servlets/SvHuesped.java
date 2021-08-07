@@ -31,10 +31,12 @@ public class SvHuesped extends HttpServlet {
         String apellido = request.getParameter("apellido");
         String direccion = request.getParameter("direccion");
         String profesion = request.getParameter("profesion");
+             //   String fechaNac = request.getParameter("fechaNac");
+
         String[] fechaNac = request.getParameter("fechaNac").split("-");
 
-        String dia = fechaNac[1];
-        String mes = fechaNac[2];
+        String dia = fechaNac[2];
+        String mes = fechaNac[1] ;
         String anno = fechaNac[0];
 
         String fechaNueva = dia + "/" + mes + "/" + anno;
@@ -51,8 +53,9 @@ public class SvHuesped extends HttpServlet {
         /*conecto cn la logica */
         Controladora control = new Controladora();
     control.crearAltaHuesped(dni, nombre, apellido, direccion, profesion,fechaNueva);
+    //control.crearAltaHuesped(dni, nombre, apellido, direccion, profesion,fechaNac);
 
-        System.out.println("nueva FECHAA:  " + fechaNueva);
+        System.out.println("nueva FECHAAAAAAAAAAAAAA:  " + fechaNueva);
         /*armar la respuesta */
         response.sendRedirect("altaCorrecta.jsp");
     }

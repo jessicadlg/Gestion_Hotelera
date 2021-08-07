@@ -10,6 +10,7 @@ import java.util.List;
 public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+    private static UsuarioAdmin usu;
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 
     public boolean comprobarIngreso(String usuario, String contra) {
@@ -23,6 +24,32 @@ public class Controladora {
             }
         }
         return false;
+    }
+
+    public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
+        Habitacion hab = new Habitacion();
+        hab.setTematica(tematica);
+        hab.setPiso(piso);
+        hab.setTipoHabitacion(tipoHabitacion);
+        hab.setPrecio(precio);
+
+        controlPersis.crearAltaHabitacion(hab);
+    }
+
+    public List<Habitacion> traerHabitaciones() {
+        return controlPersis.traerHabitaciones();
+    }
+
+    public void eliminarHabitacion(int id_numero) {
+        controlPersis.eliminarHabitacion(id_numero);
+    }
+
+    public Habitacion buscarHabitacion(int id_numero) {
+        return controlPersis.buscarHabitacion(id_numero);
+    }
+
+    public void modificarHabitacion(Habitacion hab) {
+        controlPersis.modificarHabitacion(hab);
     }
 
     public void crearAltaEmpleado(String dni, String nombre, String apellido, String direccion, String cargo, String fechaNueva) {
@@ -71,32 +98,6 @@ public class Controladora {
               ?
             }
 }*/
-    public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
-        Habitacion hab = new Habitacion();
-        hab.setTematica(tematica);
-        hab.setPiso(piso);
-        hab.setTipoHabitacion(tipoHabitacion);
-        hab.setPrecio(precio);
-
-        controlPersis.crearAltaHabitacion(hab);
-    }
-
-    public List<Habitacion> traerHabitaciones() {
-        return controlPersis.traerHabitaciones();
-    }
-
-    public void eliminarHabitacion(int id_numero) {
-        controlPersis.eliminarHabitacion(id_numero);
-    }
-
-    public Habitacion buscarHabitacion(int id_numero) {
-        return controlPersis.buscarHabitacion(id_numero);
-    }
-
-    public void modificarHabitacion(Habitacion hab) {
-        controlPersis.modificarHabitacion(hab);
-    }
-
     public void crearAltaUsuario(String usuario, String contra) {
         UsuarioAdmin usu = new UsuarioAdmin();
         usu.setUser(usuario);
@@ -142,11 +143,38 @@ public class Controladora {
     }
 
     //apartado metodos para reservas
-    public void crearReserva(String checkinJSP, String checkoutJSP, String fecha_reserva, String idHuesped, String cantPersonas, String dni_empleado, String tipoHab) {
+   
+
+    public void crearAltaReserva(String fechaNueva, String fechaNuevaC, String fechaNuevaR, String idHuesped, String cantPersonas, String dni_empleado, String tipoHab) {
+
+       //Habitacion habi = verHabitacion(id_numHab);
+        //Huesped hues = verHuesped(id_numero);
+
         Reserva re = new Reserva();
-        re.setCheckIn(checkIn);
+      //  List<Reserva> listaReservas = controlPersis.traerReservas();
+        //List<Habitacion> listaHabitaciones = controlPersis.traerHabitaciones();
+           // if(usu!= null){
+            //    for (Habitacion listaHabitacione : listaHabitaciones) {
+                    
+             //   }
+           // }
+            
+        //LO PASO DE STRING A DATE P MANDARLO A LA BD
+        Date fechaDateCheckin = new Date(fechaNueva);
+        re.setCheckIn(fechaDateCheckin);
+        Date fechaDateCheckout = new Date(fechaNuevaC);
+        re.setCheckOut(fechaDateCheckout);
+        Date fechaDate = new Date(fechaNuevaR);
+        re.setFechaDeCarga(fechaDate);
+
+        re.setListaHuesped(null);
+        re.setCantidadPersonas(0);
+        re.setListaUsuarios(null);
+        re.setListaHabitaciones(null);
+
+        controlPersis.crearAltaReserva(re);
     }
-    /* public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
+/* public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
         Habitacion hab = new Habitacion();
         hab.setTematica(tematica);
         hab.setPiso(piso);
@@ -172,6 +200,6 @@ public class Controladora {
         controlPersis.modificarHabitacion(hab);
     }
 
-     */
+ */
 
 }

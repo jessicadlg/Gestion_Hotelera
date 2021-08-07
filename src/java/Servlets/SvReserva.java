@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import Logica.Controladora;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,10 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author 003578613
- */
+
 @WebServlet(name = "SvReserva", urlPatterns = {"/SvReserva"})
 public class SvReserva extends HttpServlet {
 
@@ -43,13 +34,11 @@ public class SvReserva extends HttpServlet {
             throws ServletException, IOException {
         /*traiga los datos del JSP */
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-   String[] checkinJSP = request.getParameter("fecha_entrada").split("-");
-
-        String dia = checkinJSP[1];
-        String mes = checkinJSP[2];
+        String[] checkinJSP = request.getParameter("fecha_entrada").split("-");
+        String dia = checkinJSP[2];
+        String mes = checkinJSP[1];
         String anno = checkinJSP[0];
-
-        String fechaNueva = dia + "/" + mes + "/" + anno;        
+        String fechaNueva = dia + "/" + mes + "/" + anno;
 //
         Date fechaInicio = new Date();
         try {
@@ -57,10 +46,17 @@ public class SvReserva extends HttpServlet {
         } catch (ParseException ex) {
             Logger.getLogger(SvReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String checkoutJSP = request.getParameter("fecha_salida");
+        
+        String[] checkoutJSP = request.getParameter("fecha_salida").split("-");
+        String diaC = checkoutJSP[2];
+        String mesC = checkoutJSP[1];
+        String annoC = checkoutJSP[0];
+        String fechaNuevaC = diaC + "/" + mesC + "/" + annoC;
+        System.out.println("mIRARRRRR: " + fechaNuevaC);
+
         Date fechaSalida = new Date();
         try {
-            fechaSalida = formato.parse(checkoutJSP);
+            fechaSalida = formato.parse(fechaNuevaC);
         } catch (ParseException ex) {
             Logger.getLogger(SvReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,10 +64,17 @@ public class SvReserva extends HttpServlet {
         int milisecondsByDay = 86400000;
         int dias = (int) ((fechaSalida.getTime() - fechaInicio.getTime()) / milisecondsByDay);
 
-        System.out.println("varible :" + dias);
-        String fecha_reserva = request.getParameter("fecha_reserva");
+        System.out.println("varible mIRARRRRR: " + dias);
+
+        String[] fecha_reserva = request.getParameter("fecha_reserva").split("-");
+        String diaR = fecha_reserva[2];
+        String mesR = fecha_reserva[1];
+        String annoR = fecha_reserva[0];
+        String fechaNuevaR = diaR + "/" + mesR + "/" + annoR;
+        
+        Date fechaReserva = new Date();
         try {
-            Date fechaReserva = formato.parse(fecha_reserva);
+             fechaReserva = formato.parse(fechaNuevaR);
         } catch (ParseException ex) {
             Logger.getLogger(SvReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +83,7 @@ public class SvReserva extends HttpServlet {
         String cantPersonas = request.getParameter("cantPersonas");
         String dni_empleado = request.getParameter("dni_empleado");
         String tipoHab = request.getParameter("tipoHab");
-          
+
         /*traiga la session y asignar los atributos p abrir en cualquier JSP */
         request.getSession().setAttribute("fecha_entrada", checkinJSP);
         request.getSession().setAttribute("fecha_salida", checkoutJSP);
@@ -90,12 +93,12 @@ public class SvReserva extends HttpServlet {
         request.getSession().setAttribute("dni_empleado", dni_empleado);
         request.getSession().setAttribute("tipoHab", tipoHab);
 
-/*conecto cn la logica */
+        /*conecto cn la logica */
         Controladora control = new Controladora();
-        control.crearReserva(fechaNueva, checkoutJSP, fecha_reserva, idHuesped, cantPersonas, dni_empleado,tipoHab);
-
+        control.crearAltaReserva(fechaNueva, fechaNuevaC, fechaNuevaR, idHuesped, cantPersonas, dni_empleado, tipoHab);
+        System.out.println("MIRAR" +fechaNueva  + "-" + fechaNuevaC + "-" + fechaNuevaR);
         /*armar la respuesta */
-        response.sendRedirect("Pagina2.jsp");
+        response.sendRedirect("altaCorrecta.jsp");
     }
 
     @Override

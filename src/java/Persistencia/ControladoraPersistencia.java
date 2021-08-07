@@ -4,6 +4,7 @@ package Persistencia;
 import Logica.Empleado;
 import Logica.Habitacion;
 import Logica.Huesped;
+import Logica.Reserva;
 import Logica.UsuarioAdmin;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
@@ -112,6 +113,16 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public void crearAltaReserva(Reserva re) {
+        try {
+            reserJpa.create(re);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public List<Reserva> traerReservas() {
+        return reserJpa.findReservaEntities();
+    }
    
 }
