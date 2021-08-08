@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Logica.UsuarioAdmin;
+import Logica.Usuario;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -36,7 +36,7 @@ public class UsuarioAdminJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UsuarioAdmin usuarioAdmin) throws PreexistingEntityException, Exception {
+    public void create(Usuario usuarioAdmin) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -55,7 +55,7 @@ public class UsuarioAdminJpaController implements Serializable {
         }
     }
 
-    public void edit(UsuarioAdmin usuarioAdmin) throws NonexistentEntityException, Exception {
+    public void edit(Usuario usuarioAdmin) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -83,9 +83,9 @@ public class UsuarioAdminJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UsuarioAdmin usuarioAdmin;
+            Usuario usuarioAdmin;
             try {
-                usuarioAdmin = em.getReference(UsuarioAdmin.class, id);
+                usuarioAdmin = em.getReference(Usuario.class, id);
                 usuarioAdmin.getId_usuario();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The usuarioAdmin with id " + id + " no longer exists.", enfe);
@@ -99,19 +99,19 @@ public class UsuarioAdminJpaController implements Serializable {
         }
     }
 
-    public List<UsuarioAdmin> findUsuarioAdminEntities() {
+    public List<Usuario> findUsuarioAdminEntities() {
         return findUsuarioAdminEntities(true, -1, -1);
     }
 
-    public List<UsuarioAdmin> findUsuarioAdminEntities(int maxResults, int firstResult) {
+    public List<Usuario> findUsuarioAdminEntities(int maxResults, int firstResult) {
         return findUsuarioAdminEntities(false, maxResults, firstResult);
     }
 
-    private List<UsuarioAdmin> findUsuarioAdminEntities(boolean all, int maxResults, int firstResult) {
+    private List<Usuario> findUsuarioAdminEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UsuarioAdmin.class));
+            cq.select(cq.from(Usuario.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -123,10 +123,10 @@ public class UsuarioAdminJpaController implements Serializable {
         }
     }
 
-    public UsuarioAdmin findUsuarioAdmin(int id) {
+    public Usuario findUsuarioAdmin(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UsuarioAdmin.class, id);
+            return em.find(Usuario.class, id);
         } finally {
             em.close();
         }
@@ -136,7 +136,7 @@ public class UsuarioAdminJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UsuarioAdmin> rt = cq.from(UsuarioAdmin.class);
+            Root<Usuario> rt = cq.from(Usuario.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

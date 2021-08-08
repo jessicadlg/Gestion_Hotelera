@@ -1,3 +1,9 @@
+<%@page import="java.util.List"%>
+<%@page import="Logica.Controladora"%>
+<%@page import="Logica.Empleado"%>
+<%@page import="Logica.Huesped"%>
+<%@page import="Logica.Habitacion"%>
+<%@page import="Logica.Reserva"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -141,124 +147,124 @@
                                 <div class="card-header text-center">Registro de reserva</div>
                                 <div class="card-body">
                                     <form action="SvReserva" method="post">
+                                        <%Controladora control = new Controladora();%>
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3">
                                                 <label for="fecha_reserva">Fecha de reserva</label>
-                                                <input name="fecha_reserva" type="date" class="form-control" id="fecha_nacimiento"
+                                                <input name="fecha_reserva" type="date" class="form-control" id="fecha_reservas"
                                                        required>          
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="fecha_entrada">Checkin</label>
-                                                <input name="fecha_entrada" type="date" class="form-control" id="fecha_nacimiento"
+                                                <input name="fecha_entrada" type="date" class="form-control" id="fecha_entrada"
                                                        required>          
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="fecha_salida">Checkout</label>
-                                                <input name="fecha_salida" type="date" class="form-control" id="fecha_nacimiento"
+                                                <input name="fecha_salida" type="date" class="form-control" id="fecha_salida"
                                                        required>          
                                             </div>
                                             <div class="col-md-6 mb-3 mx-auto">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-plus-square-o "></i> Mostrar Disponibilidad</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-plus-square-o"  onclick="alert('esta disponible')"></i> Mostrar Disponibilidad</button>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="idHuesped">Identificación del Huesped</label>
-                                                <input name="idHuesped" type="text" class="form-control" id="idHuesped"
-                                                       required>          
+                                                <input name="idHuesped"  type="text" class="form-control" value="" id="idHuesped"
+                                                       required> 
+
                                             </div>
-                                             <div class="col-md-12 mb-3">
-                                                <label for="cantPersonas">Cantidad de personas</label>
-                                                <input name="cantPersonas" type="text" class="form-control" id="cantPersonas"
-                                                       required>          
+                                            <div class="col-md-6 mb-3">
+                                                <label for="cantP">Cantidad de personas</label>
+                                                <input name="cantP"  type="text" class="form-control" value="" id="cantP"
+                                                       required> 
                                             </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label for="dni_empleado">dni_empleado</label>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="dni_empleado">Dni empleado</label>
                                                 <input name="dni_empleado" type="text" class="form-control" id="dni_empleado"
                                                        required>          
                                             </div>
-                                            
-
                                             <div class="col-md-6 mb-3">
-                                                <label for="tipoHab">Tipo de habitación</label>
-                                                <select name="tipoHab" id="tipoHab" class="form-control">
-                                                    <option value="" disabled="disabled" >Ingrese el tipo de habitación..</option>
-                                                    <option value="Simple">Simple</option>
-                                                    <option value="Double">Double</option>
-                                                    <option value="Triple">Triple</option>
-                                                    <option value="Multiple">Multiple</option>
-
+                                                <% List<Habitacion> listaHabitaciones = control.traerHabitaciones();%>
+                                                <label for="idHab">Temática de la habitación</label>
+                                                <select name="idHab" id="idHab" class="form-control">
+                                                    <%for (Habitacion hab : listaHabitaciones) {%>
+                                                    <option value="<%=hab.getId_numHab()%>"> <%=hab.getTematica()%> </option>
+                                                    <%}%>
                                                 </select>
                                             </div>
-
-                                            <div class="mx-auto">
-                                                <button class="btn btn-secondary " type="submit">Enviar</button>
-                                            </div>
                                         </div>
-                                    </form>
+
+
+                                        <div class="mx-auto">
+                                            <button class="btn btn-secondary " type="submit">Enviar</button>
+                                        </div>
                                 </div>
-                            </div>    
-                        </div>  
-                    </div>
+                                </form>
+                            </div>
+                        </div>    
+                    </div>  
                 </div>
-                <!-- /page content -->
-
             </div>
+            <!-- /page content -->
+
         </div>
+    </div>
 
 
-        <!-- footer content -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="copyright text-center">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>
-                    creado por<a href=""> Jessica Delgado</a>
-                </p>
-            </div>
-        </footer>
-        <!-- /footer content -->
-        <!-- jQuery -->
-        <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- FastClick -->
-        <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="assets/vendors/nprogress/nprogress.js"></script>
-        <!-- Chart.js -->
-        <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
-        <!-- gauge.js -->
-        <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
-        <!-- bootstrap-progressbar -->
-        <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-        <!-- iCheck -->
-        <script src="assets/vendors/iCheck/icheck.min.js"></script>
-        <!-- Skycons -->
-        <script src="assets/vendors/skycons/skycons.js"></script>
-        <!-- Flot -->
-        <script src="assets/vendors/Flot/jquery.flot.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
-        <!-- Flot plugins -->
-        <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
-        <!-- DateJS -->
-        <script src="assets/vendors/DateJS/build/date.js"></script>
-        <!-- JQVMap -->
-        <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-        <!-- bootstrap-daterangepicker -->
-        <script src="assets/vendors/moment/min/moment.min.js"></script>
-        <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- footer content -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="copyright text-center">
+                ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                creado por<a href=""> Jessica Delgado</a>
+            </p>
+        </div>
+    </footer>
+    <!-- /footer content -->
+    <!-- jQuery -->
+    <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="assets/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="assets/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="assets/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="assets/vendors/Flot/jquery.flot.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="assets/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="assets/vendors/moment/min/moment.min.js"></script>
+    <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-        <!-- Custom Theme Scripts -->
-        <script src="assets/build/js/custom.min.js"></script>
-    </body>
+    <!-- Custom Theme Scripts -->
+    <script src="assets/build/js/custom.min.js"></script>
+</body>
 </html>
 
 

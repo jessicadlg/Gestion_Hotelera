@@ -1,32 +1,37 @@
 package Logica;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Habitacion implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     int id_numHab;
     String piso;
     String tematica;
     double precio;
     String tipoHabitacion;
-
+    @OneToMany
+    List<Reserva>listaReservas;
+    
     public Habitacion() {
     }
 
-    public Habitacion(int id_numHab, String piso, String tematica, double precio, String tipoHabitacion) {
+    public Habitacion(int id_numHab, String piso, String tematica, double precio, String tipoHabitacion, List<Reserva> listaReservas) {
         this.id_numHab = id_numHab;
         this.piso = piso;
         this.tematica = tematica;
         this.precio = precio;
         this.tipoHabitacion = tipoHabitacion;
+        this.listaReservas = listaReservas;
     }
 
     public int getId_numHab() {
@@ -69,6 +74,12 @@ public class Habitacion implements Serializable {
         this.tipoHabitacion = tipoHabitacion;
     }
 
-   
+    public List<Reserva> getListaReservas() {
+        return listaReservas;
+    }
+
+    public void setListaReservas(List<Reserva> listaReservas) {
+        this.listaReservas = listaReservas;
+    }
 
 }

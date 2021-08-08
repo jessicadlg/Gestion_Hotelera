@@ -22,11 +22,11 @@ public class SvEliminar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int id_numHab = Integer.parseInt(request.getParameter("id_numHab"));
-        System.out.println("la id es "  + id_numHab);
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println("la ID ES "  + id);
         
        Controladora control = new Controladora();
-        control.eliminarHabitacion(id_numHab);
+        control.eliminarHabitacion(id);
         //actualizo mi lista de empleados
        // request.getSession().setAttribute("listaEmpleados", control.traerEmpleados());
         response.sendRedirect("verHabitaciones.jsp");

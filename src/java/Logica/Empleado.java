@@ -14,13 +14,13 @@ public class Empleado extends Persona{
     String cargo;
     double bonificacionesPorDia;
     @OneToOne
-    UsuarioAdmin user;
+    Usuario user;
 
 
     public Empleado() {
     }
 
-    public Empleado(String cargo, double bonificacionesPorDia, UsuarioAdmin user, long id_numero, String DNI, String nombre, String apellido, String direccion, Date fechaNac) {
+    public Empleado(String cargo, double bonificacionesPorDia, Usuario user, long id_numero, String DNI, String nombre, String apellido, String direccion, Date fechaNac) {
         super(id_numero, DNI, nombre, apellido, direccion, fechaNac);
         this.cargo = cargo;
         this.bonificacionesPorDia = bonificacionesPorDia;
@@ -44,11 +44,11 @@ public class Empleado extends Persona{
         this.bonificacionesPorDia = bonificacionesPorDia;
     }
 
-    public UsuarioAdmin getUser() {
+    public Usuario getUser() {
         return user;
     }
 
-    public void setUser(UsuarioAdmin user) {
+    public void setUser(Usuario user) {
         this.user = user;
     }
 

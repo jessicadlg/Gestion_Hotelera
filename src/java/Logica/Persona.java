@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class Persona implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)        
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)        
     long id_numero;
     @Basic
     String DNI;

@@ -183,12 +183,12 @@
                                                 <td class="align-middle">
                                                     <form name="borrarForm" action="SvEliminar" method="POST"> 
                                                         <input type="hidden" name="id_numero" value="<%=id%>">
-                                                        <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i>Eliminar </button>
+                                                        <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i> Eliminar </button>
                                                     </form>
 
                                                     <form name="editarForm" action="SvEditar" method="POST">
                                                         <input type="hidden" name="id_numero" value="<%=id%>">
-                                                        <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i>Editar </button>
+                                                        <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i> Editar </button>
                                                     </form>
                                                 </td>
                                             </tr>   

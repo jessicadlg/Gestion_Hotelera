@@ -77,7 +77,7 @@
                                             <li><a href="verEmpleados.jsp">Ver empleados</a></li>
                                         </ul>
                                     </li>
-                                   
+
                                     <li><a><i class="fa fa-home"></i> Reservas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="altaReserva.jsp">Registrar reservas</a></li>
@@ -128,64 +128,6 @@
                                         <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="text-center">
-                                            <a class="dropdown-item">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </ul>
                         </nav>
                     </div>
@@ -229,14 +171,18 @@
 
                                                 <td class="align-middle">
                                                     <div class="form-inline ">
-                                                        <form name="borrarForm" class="form-horizontal mx-auto" action="SvEliminar" method="POST"> 
-                                                            <input type="hidden" name="id_numero" value="<%=id%>">
-                                                            <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i>Eliminar </button>
+                                                        <form name="borrarForm" action="SvEliminar" method="POST" class="form-horizontal mx-auto" > 
+                                                            <input type="hidden" name="id" value="<%=id%>">
+                                                            <%--<div id="alert1" class="alert alert-success" role="alert">
+                                                                <button type="button"  class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <strong>Eliminado correctamente</strong> 
+                                                            </div>--%>
+                                                            <button type="submit"  id="btn1" class="btn btn-danger btn-sm m-1" data-title="Delete"> <i class="fa fa-trash-o"></i> Eliminar </button>
                                                         </form>
 
-                                                        <form name="editarForm" action="SvEditar" class="form-horizontal mx-auto" method="POST">
-                                                            <input type="hidden" name="id_numero" value="<%=id%>">
-                                                            <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i>Editar </button>
+                                                        <form name="editarForm" action="SvEditar" method="POST" class="form-horizontal mx-auto" >
+                                                            <input type="hidden" name="id" value="<%=id%>">
+                                                            <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"> <i class="fa fa-pencil"></i> Editar </button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -270,7 +216,15 @@
     </div>
 </div>
 
-<!-- jQuery -->
+<!-- jQuery 
+<script>
+    $(document).ready(function () {
+        $("#alert1").hide();
+        $("#btn1").click(function () {
+            $("#alert1").show();
+        });
+    });
+</script>  -->
 <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

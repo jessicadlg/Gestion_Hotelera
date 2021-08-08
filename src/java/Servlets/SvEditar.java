@@ -46,10 +46,10 @@ public class SvEditar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id_numero = Integer.parseInt(request.getParameter("id_numero"));
+        int id = Integer.parseInt(request.getParameter("id"));
 
         Controladora control = new Controladora();
-        Habitacion hab = control.buscarHabitacion(id_numero);
+        Habitacion hab = control.buscarHabitacion(id);
 
         //seteo
         HttpSession misession = request.getSession();

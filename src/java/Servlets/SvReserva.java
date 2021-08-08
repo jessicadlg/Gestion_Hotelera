@@ -1,10 +1,14 @@
 package Servlets;
 
 import Logica.Controladora;
+import Logica.Empleado;
+import Logica.Habitacion;
+import Logica.Huesped;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -12,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SvReserva", urlPatterns = {"/SvReserva"})
 public class SvReserva extends HttpServlet {
@@ -46,7 +50,7 @@ public class SvReserva extends HttpServlet {
         } catch (ParseException ex) {
             Logger.getLogger(SvReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         String[] checkoutJSP = request.getParameter("fecha_salida").split("-");
         String diaC = checkoutJSP[2];
         String mesC = checkoutJSP[1];
@@ -64,41 +68,82 @@ public class SvReserva extends HttpServlet {
         int milisecondsByDay = 86400000;
         int dias = (int) ((fechaSalida.getTime() - fechaInicio.getTime()) / milisecondsByDay);
 
-        System.out.println("varible mIRARRRRR: " + dias);
+        System.out.println("varible dias: " + dias);
 
         String[] fecha_reserva = request.getParameter("fecha_reserva").split("-");
         String diaR = fecha_reserva[2];
         String mesR = fecha_reserva[1];
         String annoR = fecha_reserva[0];
         String fechaNuevaR = diaR + "/" + mesR + "/" + annoR;
-        
+
         Date fechaReserva = new Date();
         try {
-             fechaReserva = formato.parse(fechaNuevaR);
+            fechaReserva = formato.parse(fechaNuevaR);
         } catch (ParseException ex) {
             Logger.getLogger(SvReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
+        long idHuesped = Long.parseLong( request.getParameter("idHuesped"));
+        int cantP = Integer.parseInt(request.getParameter("cantP"));
+        long  dni_empleado = Long.parseLong(request.getParameter("dni_empleado"));
+        int idHab = Integer.parseInt(request.getParameter("idHab"));
 
-        String idHuesped = request.getParameter("idHuesped");
-        String cantPersonas = request.getParameter("cantPersonas");
-        String dni_empleado = request.getParameter("dni_empleado");
-        String tipoHab = request.getParameter("tipoHab");
-
-        /*traiga la session y asignar los atributos p abrir en cualquier JSP */
-        request.getSession().setAttribute("fecha_entrada", checkinJSP);
-        request.getSession().setAttribute("fecha_salida", checkoutJSP);
-        request.getSession().setAttribute("fecha_reserva", fecha_reserva);
+        
+        //pruebo traer p mostrar solo ese id
+        /*Habitacion hab = control.buscarHabitacion(idHab);
+        
+          HttpSession misession = request.getSession();
+          misession.setAttribute("habitacion", hab);
+*/
+                /*traiga la session y asignar los atributos p abrir en cualquier JSP */
+        request.getSession().setAttribute("fecha_entrada", fechaNueva);
+        request.getSession().setAttribute("fecha_salida", fechaNuevaC);
+        request.getSession().setAttribute("fecha_reserva", fechaNuevaR);
         request.getSession().setAttribute("idHuesped", idHuesped);
-        request.getSession().setAttribute("cantPersonas", cantPersonas);
+        request.getSession().setAttribute("cantP", cantP);
         request.getSession().setAttribute("dni_empleado", dni_empleado);
-        request.getSession().setAttribute("tipoHab", tipoHab);
+        request.getSession().setAttribute("idHab", idHab);
 
-        /*conecto cn la logica */
+        //pido los id
+        /*List<Huesped> listaHuesped = control.traerHuespedes();
+        for (Huesped hue : listaHuesped) {
+            if (hue.getDNI().equals(idHuesped)) {
+                idHuesped = hue.getId_numero();
+            }
+        }
+       List<Empleado> listaEmpleados = control.traerEmpleados();
+        for (Empleado emp : listaEmpleados) {
+            if (emp.getDNI().equals(dni_empleado)) {
+                dni_empleado = emp.getId_numero();
+            }
+        }
+        System.out.println("idddddddd huespedddddddd " + idHuesped);
+         System.out.println("idddddddd huespedddddddd " + dni_empleado);
+         System.out.println("Iddddddddd" + idHab);
+*/
+        
+        /*metodo para verificar reserva*/
+  /*Boolean autorizado = control.crearReserva(fechaInicio, fechaSalida,);
+
+       if (autorizado == true) {
+           HttpSession miSesion = request.getSession(true); 
+             miSesion.setAttribute(fechaInicio, fechaInicio);
+           miSesion.setAttribute(fechaSalida, fechaSalida);
+         Double montoTotal=1.0;
+         
+           response.sendRedirect("ticketReserva.jsp");
+
+        } else {
+            response.sendRedirect("errorReserva.jsp");
+
+       }/*
+      
+        System.out.println("MIRAR todas las fechas" + fechaNueva + "-" + fechaNuevaC + "-" + fechaNuevaR);
+/*conecto cn la logica */
         Controladora control = new Controladora();
-        control.crearAltaReserva(fechaNueva, fechaNuevaC, fechaNuevaR, idHuesped, cantPersonas, dni_empleado, tipoHab);
-        System.out.println("MIRAR" +fechaNueva  + "-" + fechaNuevaC + "-" + fechaNuevaR);
+control.crearAltaReserva(fechaInicio, fechaSalida, fechaReserva, cantP, idHab,idHuesped,dni_empleado );
+
         /*armar la respuesta */
-        response.sendRedirect("altaCorrecta.jsp");
+        response.sendRedirect("ticketReserva.jsp");
     }
 
     @Override

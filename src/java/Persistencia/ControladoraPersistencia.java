@@ -5,7 +5,7 @@ import Logica.Empleado;
 import Logica.Habitacion;
 import Logica.Huesped;
 import Logica.Reserva;
-import Logica.UsuarioAdmin;
+import Logica.Usuario;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,7 +21,7 @@ public class ControladoraPersistencia {
     ReservaJpaController reserJpa = new ReservaJpaController();
     UsuarioAdminJpaController usuJpa = new UsuarioAdminJpaController();
     
-     public List<UsuarioAdmin> traerUsuarios() {
+     public List<Usuario> traerUsuarios() {
         return usuJpa.findUsuarioAdminEntities();
     }
        
@@ -36,15 +36,22 @@ public class ControladoraPersistencia {
     public List<Habitacion> traerHabitaciones() {
         return habJpa.findHabitacionEntities();
     }
-    public void eliminarHabitacion(int id_numero) {
+    public void eliminarHabitacion(int id) {
+        try {
+           habJpa.destroy(id);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void eliminarHabitacion2(int id_numero) {
         try {
            habJpa.destroy(id_numero);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public Habitacion buscarHabitacion(int id_numero) {
-        return habJpa.findHabitacion(id_numero);
+     public Habitacion buscarHabitacion(int id) {
+        return habJpa.findHabitacion(id);
     }
     
      public void modificarHabitacion(Habitacion hab){
@@ -106,7 +113,7 @@ public class ControladoraPersistencia {
         }
     }
 
-    public void crearAltaUsuario(UsuarioAdmin usu) {
+    public void crearAltaUsuario(Usuario usu) {
         try {
             usuJpa.create(usu);
         } catch (Exception ex) {
@@ -115,6 +122,13 @@ public class ControladoraPersistencia {
     }
 
     public void crearAltaReserva(Reserva re) {
+        try {
+            reserJpa.create(re);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void crearReserva(Reserva re) {
         try {
             reserJpa.create(re);
         } catch (Exception ex) {

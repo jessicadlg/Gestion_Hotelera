@@ -10,14 +10,14 @@ import java.util.List;
 public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
-    private static UsuarioAdmin usu;
+    private static Usuario usu;
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 
     public boolean comprobarIngreso(String usuario, String contra) {
-        List<UsuarioAdmin> listaUsuarios = controlPersis.traerUsuarios();
+        List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
 
         if (listaUsuarios != null) {
-            for (UsuarioAdmin usu : listaUsuarios) {
+            for (Usuario usu : listaUsuarios) {
                 if (usu.getUser().equals(usuario) && usu.getPassword().equals(contra)) {
                     return true;
                 }
@@ -40,12 +40,12 @@ public class Controladora {
         return controlPersis.traerHabitaciones();
     }
 
-    public void eliminarHabitacion(int id_numero) {
-        controlPersis.eliminarHabitacion(id_numero);
+    public void eliminarHabitacion(int id) {
+        controlPersis.eliminarHabitacion(id);
     }
 
-    public Habitacion buscarHabitacion(int id_numero) {
-        return controlPersis.buscarHabitacion(id_numero);
+    public Habitacion buscarHabitacion(int id) {
+        return controlPersis.buscarHabitacion(id);
     }
 
     public void modificarHabitacion(Habitacion hab) {
@@ -82,31 +82,15 @@ public class Controladora {
         controlPersis.crearAltaHuesped(hues);
     }
 
-    //public boolean crear(Date checkin, Date checkout, Date fechaDeReserva, int cantDias,int id_numHab , int cantPersonas,int id_reserva) {}
-    /* int id_reserva = retornarUltIdReserva();
-    Huesped hues = verHuesped(id_numero);
-    Habitacion hab = verHabitacion(id_numHab);
-    Reserva nuevaRes = new Reserva(id_reserva, checkin, checkout, cantDias, tematica, cantPersonas, id_usuario, id_numero);
-    List<Reserva> listadoReservas = cp.traerReservas();
-    List<Habitacion> listadoHabitaciones = cp.traerHabitaciones();
-        for(Reserva res: listadoReservas){
-            if(res.get?algdehabitacion().getId_numHab() == tematica.getId_numHab()){
-              if(nuevaRes.getCheckIn().after(res.getCheckIn()) && nuevaRes.getCheckIn().before(res.getCheckOut())){
-                  System.out.println("esta mal:la nueva reserva esta dentro del rango de fechas de una reserva existente");
-                  return true;
-              }
-              ?
-            }
-}*/
     public void crearAltaUsuario(String usuario, String contra) {
-        UsuarioAdmin usu = new UsuarioAdmin();
+        Usuario usu = new Usuario();
         usu.setUser(usuario);
         usu.setPassword(contra);
         controlPersis.crearAltaUsuario(usu);
 
     }
 
-    public List<UsuarioAdmin> traerUsuarios() {
+    public List<Usuario> traerUsuarios() {
         return controlPersis.traerUsuarios();
     }
 
@@ -142,38 +126,90 @@ public class Controladora {
         controlPersis.modificarHuesped(hues);
     }
 
-    //apartado metodos para reservas
-   
+     public Boolean crearAltaReserva(Date fechaInicio, Date fechaSalida, Date fechaReserva, int cantP, int idHab, long idHuesped, long dni_empleado) {
+       
+         Reserva nuevaReserva = new Reserva();
+        List<Reserva> listaReservas = controlPersis.traerReservas();
 
-    public void crearAltaReserva(String fechaNueva, String fechaNuevaC, String fechaNuevaR, String idHuesped, String cantPersonas, String dni_empleado, String tipoHab) {
+        //if (listaReservas != null) {
+            for (Reserva re : listaReservas) {
+                if (re.getHabitacion().getId_numHab()==(idHab))  {
+                    System.out.println("NO SE PUEDE HACER LA RESERVA");
+                     return false;
+                } else {
+                     System.out.println("si RESERVA");
+                re.setCheckIn(fechaInicio);
+                re.setCheckOut(fechaSalida);
+                re.setFechaDeCarga(fechaReserva);
+                re.setCantidadPersonas(cantP);
+              //  re.setHabitacion(idHab);
+                
 
-       //Habitacion habi = verHabitacion(id_numHab);
-        //Huesped hues = verHuesped(id_numero);
-
-        Reserva re = new Reserva();
-      //  List<Reserva> listaReservas = controlPersis.traerReservas();
-        //List<Habitacion> listaHabitaciones = controlPersis.traerHabitaciones();
-           // if(usu!= null){
-            //    for (Habitacion listaHabitacione : listaHabitaciones) {
+                controlPersis.crearReserva(re);
                     
-             //   }
-           // }
-            
-        //LO PASO DE STRING A DATE P MANDARLO A LA BD
-        Date fechaDateCheckin = new Date(fechaNueva);
-        re.setCheckIn(fechaDateCheckin);
-        Date fechaDateCheckout = new Date(fechaNuevaC);
-        re.setCheckOut(fechaDateCheckout);
-        Date fechaDate = new Date(fechaNuevaR);
-        re.setFechaDeCarga(fechaDate);
-
-        re.setListaHuesped(null);
-        re.setCantidadPersonas(0);
-        re.setListaUsuarios(null);
-        re.setListaHabitaciones(null);
-
-        controlPersis.crearAltaReserva(re);
+                }
+            }
+        
+        return true;
     }
+    //mi metodo:
+   
+    ///////////////////////////////////ADAPTANDO A MARCE
+
+   /* public Boolean crearReserva(Date fechaInicio, Date fechaSalida, Date fechaReserva, int dias, int cantP,
+            int idHab, long idHuesped, long id_empleado) {
+        List<Habitacion> listaHabitaciones = controlPersis.traerHabitaciones();
+        //=!     Empleado emple = traerEmpleados(id_empleado);
+        //=!   Huesped hue = traerHuesped(id_Huesped);
+        //=!
+        Habitacion habi = buscarHabitacion(idHab);
+
+        //falta id_reserva
+        // Reserva reser = new Reserva(fechaInicio,fechasal,dias,cant_personas,id_habitacion,id_Huesped,id_empleado);
+        List<Reserva> listaReservas = traerReservas();
+
+        for (Reserva reser : listaReservas) {
+            if (habi.getId_numHab() == idHab && fechaInicio == reser.getCheckOut() && fechaSalida == reser.getCheckOut()) {
+
+                System.out.println("NO SE PUEDE HACER LA RESERVA");
+                return false;
+            } else {
+                reser.setCheckIn(fechaInicio);
+                reser.setCheckOut(fechaSalida);
+                reser.setFechaDeCarga(fechaReserva);
+                reser.setCantidadPersonas(cantP);
+
+                controlPersis.crearReserva(reser);
+                return true;
+            }
+        }
+    }
+*/
+//fin
+
+    public List<Reserva> traerReservas() {
+        return controlPersis.traerReservas();
+    }
+//final ult llave
+}
+
+//public boolean crear(Date checkin, Date checkout, Date fechaDeReserva, int cantDias,int id_numHab , int cantPersonas,int id_reserva) {}
+/* int id_reserva = retornarUltIdReserva();
+    Huesped hues = verHuesped(id_numero);
+    Habitacion hab = verHabitacion(id_numHab);
+    Reserva nuevaRes = new Reserva(id_reserva, checkin, checkout, cantDias, tematica, cantPersonas, id_usuario, id_numero);
+    List<Reserva> listadoReservas = cp.traerReservas();
+    List<Habitacion> listadoHabitaciones = cp.traerHabitaciones();
+        for(Reserva res: listadoReservas){
+            if(res.get?algdehabitacion().getId_numHab() == tematica.getId_numHab()){
+              if(nuevaRes.getCheckIn().after(res.getCheckIn()) && nuevaRes.getCheckIn().before(res.getCheckOut())){
+                  System.out.println("esta mal:la nueva reserva esta dentro del rango de fechas de una reserva existente");
+                  return true;
+              }
+              ?
+            }
+}*/
+///////////////////////4 metodos para abm
 /* public void crearAltaHabitacion(String tematica, String piso, String tipoHabitacion, double precio) {
         Habitacion hab = new Habitacion();
         hab.setTematica(tematica);
@@ -184,9 +220,7 @@ public class Controladora {
         controlPersis.crearAltaHabitacion(hab);
     }
 
-    public List<Reserva> traerReservas() {
-        return controlPersis.traerReservas();
-    }
+   
 
     public void eliminarHabitacion(int id_numero) {
         controlPersis.eliminarHabitacion(id_numero);
@@ -201,5 +235,3 @@ public class Controladora {
     }
 
  */
-
-}

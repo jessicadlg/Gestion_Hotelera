@@ -1,12 +1,14 @@
 <%@page import="Logica.Reserva"%>
-<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="Logica.Habitacion"%>
 <%@page import="Logica.Huesped"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="Logica.Empleado"%>
 <%@page import="java.util.List"%>
 <%@page import="Logica.Controladora"%>
 <!DOCTYPE html>
 <html lang="es">
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -133,7 +135,65 @@
                                         <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                              </ul>
+                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <div class="text-center">
+                                            <a class="dropdown-item">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </ul>
                         </nav>
                     </div>
                 </div>
@@ -145,17 +205,17 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Listado de huespedes</h4>
+                                    <h4 class="card-title">Listado de reservas</h4>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                        <th>DNI</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Dirección</th>
-                                        <th>Fecha de Nacimiento</th>
-                                        <th>Profesión</th>
+                                        <th>Fecha de reserva</th>
+                                        <th>Checkin</th>
+                                        <th>Checkout</th>
+                                        <th>Id del Huesped</th>
+                                        <th>Cantidad de personas</th>
+                                        <th>Id? habitación</th>
                                         <th class="text-center">Acciones</th>
 
                                         </thead>
@@ -165,30 +225,30 @@
                                                 List<Reserva> listaReservas = control.traerReservas();
                                                 for (Reserva res : listaReservas) { %>
                                             <tr>
-                                                <%String dni = res.getDNI();%>
-                                                <td><%=dni%></td>
-                                                <%String nomb = res.getNombre();%>
-                                                <td><%=nomb%></td>
-                                                <%String ape = res.getApellido();%>
-                                                <td><%=ape%></td>
-                                                <%String dir = res.getDireccion();%>
-                                                <td><%=dir%></td>                                
                                                 <%SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-                                                       String fecCadena = sdf.format(res.getFechaNac());%>
-                                                <td><%=fecCadena%></td>
-                                                <%String profesion = res.getProfesion();%>
-                                                <td><%=profesion%></td>  
-                                                <%int id = res.getId_reserva();%>   
+                                                    String feC = sdf.format(res.getFechaDeCarga());%>
+                                                <td><%=feC%></td>
+                                                <%String feI = sdf.format(res.getCheckIn());%>
+                                                <td><%=feI%></td>
+                                                <%String feS = sdf.format(res.getCheckOut());%>
+                                                <%--SIGUIENTE INTENTO TRAER UN HUESPED--%> <td><%=feS%></td>
+                                                
+                                                
+                                                <%int cantP = res.getCantidadPersonas();%>
+                                                <td><%=cantP%></td>
+                                               
+                                                <td></td>
+
+                                                <%int id = res.getId_reserva();%> 
 
                                                 <td class="align-middle">
                                                     <form name="borrarForm" action="SvEliminar" method="POST"> 
                                                         <input type="hidden" name="id_numero" value="<%=id%>">
-                                                        <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i>Eliminar </button>
+                                                        <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i> Eliminar </button>
                                                     </form>
-
                                                     <form name="editarForm" action="SvEditar" method="POST">
                                                         <input type="hidden" name="id_numero" value="<%=id%>">
-                                                        <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i>Editar </button>
+                                                        <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i> Editar </button>
                                                     </form>
                                                 </td>
                                             </tr>   
@@ -204,6 +264,7 @@
         </div>
     </div >
     <!-- /page content -->
+
 </div>
 </div>
 

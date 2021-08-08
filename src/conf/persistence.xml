@@ -7,7 +7,7 @@
     <class>Logica.Huesped</class>
     <class>Logica.Persona</class>
     <class>Logica.Reserva</class>
-    <class>Logica.UsuarioAdmin</class>
+    <class>Logica.Usuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpIntegrador?serverTimezone=UTC"/>

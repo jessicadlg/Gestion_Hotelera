@@ -219,13 +219,13 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="piso">Piso:</label>
-                                                <input name="piso" type="number" class="form-control" id="piso" placeholder="" value="<%=hab.getPiso()%>" required>
+                                                <input name="piso" value="<%=hab.getPiso()%>" type="number" class="form-control" id="piso" placeholder=""  required>
                                             </div>
 
                                             <div class="col-md-6 mb-3">
                                                 <label for="tipo">Tipo de habitación</label>
-                                                <select name="tipo" value="<%=hab.getTipoHabitacion()%>" id="tipo" class="form-control">
-                                                    <option value="" disabled="disabled" >Ingrese el tipo de habitación..</option>
+                                                <select name="tipo"  id="tipo" class="form-control">
+                                                    <option value="<%=hab.getTipoHabitacion()%>" disabled="disabled" >Ingrese el tipo de habitación..</option>
                                                     <option value="Simple">Simple</option>
                                                     <option value="Double">Double</option>
                                                     <option value="Triple">Triple</option>
@@ -236,7 +236,7 @@
                                                 <label for="precio">Precio:</label>
                                                <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" name="precio"  class="form-control" value="<%=hab.getPrecio()%>" required >
+                                                    <input type="text" name="precio" value="<%=hab.getPrecio()%>"  class="form-control"  required >
                                                 </div>
                                             </div>
                                             <input type="hidden" name="id_numero" value="<%=hab.getId_numHab()%>">

@@ -35,8 +35,8 @@ public class SvHuesped extends HttpServlet {
 
         String[] fechaNac = request.getParameter("fechaNac").split("-");
 
-        String dia = fechaNac[2];
-        String mes = fechaNac[1] ;
+        String dia = fechaNac[1];
+        String mes = fechaNac[2] ;
         String anno = fechaNac[0];
 
         String fechaNueva = dia + "/" + mes + "/" + anno;
