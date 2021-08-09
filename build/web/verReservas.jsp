@@ -213,14 +213,13 @@
                                         <th>Fecha de reserva</th>
                                         <th>Checkin</th>
                                         <th>Checkout</th>
-                                        <th>Id del Huesped</th>
+                                        <th>Id Huesped</th>
                                         <th>Cantidad de personas</th>
-                                        <th>Id? habitación</th>
+                                        <th>Id habitación</th>
+                                         <th>Id empleado</th>
                                         <th class="text-center">Acciones</th>
-
                                         </thead>
                                         <tbody>
-
                                             <% Controladora control = new Controladora();
                                                 List<Reserva> listaReservas = control.traerReservas();
                                                 for (Reserva res : listaReservas) { %>
@@ -232,11 +231,14 @@
                                                 <td><%=feI%></td>
                                                 <%String feS = sdf.format(res.getCheckOut());%>
                                                 <%--SIGUIENTE INTENTO TRAER UN HUESPED--%> <td><%=feS%></td>
-                                                
-                                                
+                                                <%long idHue = res.getHuesped().getId_numero();%>
+                                                <td><%=idHue%></td>
                                                 <%int cantP = res.getCantidadPersonas();%>
                                                 <td><%=cantP%></td>
-                                               
+                                                <%int idHabi = res.getHabitacion().getId_numHab();%>
+                                                <td><%=idHabi%></td>
+                                                 <%int idUsu = res.getUsuario().getId_usuario();%>
+                                                <td><%=idUsu%></td>
                                                 <td></td>
 
                                                 <%int id = res.getId_reserva();%> 

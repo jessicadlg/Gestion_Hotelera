@@ -179,8 +179,8 @@
                                                        required> 
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="dni_empleado">Dni empleado</label>
-                                                <input name="dni_empleado" type="text" class="form-control" id="dni_empleado"
+                                                <label for="idUsu">Identificacion del empleado</label>
+                                                <input name="idUsu" type="text" class="form-control" id="idUsu"
                                                        required>          
                                             </div>
                                             <div class="col-md-6 mb-3">

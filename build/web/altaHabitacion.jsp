@@ -127,64 +127,6 @@
                                         <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="text-center">
-                                            <a class="dropdown-item">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </ul>
                         </nav>
                     </div>
@@ -198,44 +140,40 @@
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
                                 <div class="card-header text-center">Registro de habitación</div>
                                 <div class="card-body">
-                                    <form action="SvHabitacion" method="post">
+                                    <form action="SvHabitacion" method="post" id="demo-form" data-parsley-validate>
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3">
-                                                <label for="tematica">Nombre de la habitación</label>
-                                                <select name="tematica" id="tematica" class="form-control">
-                                                    <option value="" readonly="reandonly"   >Ingrese la temática</option>
+                                                <label for="tematica">Nombre de la habitación*</label>
+                                                <select name="tematica" id="heard" class="form-control" required>
+                                                    <option value=""  >Ingrese la temática</option>
                                                     <option value="Cataratas del Iguazú">Cataratas del Iguazú</option>
                                                     <option value="Glaciar Perito Moreno">Glaciar Perito Moreno</option>
                                                     <option value="Salinas Grandes">Salinas Grandes</option>
                                                     <option value="Selva Misionera">Selva Misionera</option>
-                                                    <option value="Bañado La Estrella">Bañado La Estrella</option>
-                                                    <option value="Río Mina Clavero">Río Mina Clavero</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="piso">Piso:</label>
-                                                <input name="piso" type="number" class="form-control" id="piso" placeholder="" value="" required>
+                                                <label for="piso">Piso*</label>
+                                                <input name="piso" type="number" class="form-control" id="heard"  value="" required>
                                             </div>
-
                                             <div class="col-md-6 mb-3">
-                                                <label for="tipo">Tipo de habitación</label>
-                                                <select name="tipo" id="tipo" class="form-control">
-                                                    <option value="" disabled="disabled" >Ingrese el tipo de habitación..</option>
+                                                <label for="tipo">Tipo de habitación*</label>
+                                                <select name="tipo" id="heard" class="form-control" required>
+                                                    <option value=""  >Ingrese el tipo de habitación..</option>
                                                     <option value="Simple">Simple</option>
                                                     <option value="Double">Double</option>
                                                     <option value="Triple">Triple</option>
                                                     <option value="Multiple">Multiple</option>
                                                 </select>
+                                                </select>
                                             </div>
                                             <div class="col-md-12 mb-3">
-                                                <label for="precio">Precio:</label>
+                                                <label for="precio">Precio*</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" name="precio" required="" class="form-control" value="10">
+                                                    <input type="text" name="precio" id="heard" required="" class="form-control" placeholder="1000">
                                                 </div>
-
                                             </div>
-
                                             <div class="mx-auto">
                                                 <button class="btn btn-secondary" type="submit">Enviar</button>
                                             </div>
@@ -302,7 +240,24 @@
         <!-- bootstrap-daterangepicker -->
         <script src="assets/vendors/moment/min/moment.min.js"></script>
         <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
+        <!-- bootstrap-wysiwyg -->
+        <script src="assets/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+        <script src="assets/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+        <script src="assets/vendors/google-code-prettify/src/prettify.js"></script>
+        <!-- jQuery Tags Input -->
+        <script src="assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+        <!-- Switchery -->
+        <script src="assets/vendors/switchery/dist/switchery.min.js"></script>
+        <!-- Select2 -->
+        <script src="assets/vendors/select2/dist/js/select2.full.min.js"></script>
+        <!-- Parsley -->
+        <script src="assets/vendors/parsleyjs/dist/parsley.min.js"></script>
+        <!-- Autosize -->
+        <script src="assets/vendors/autosize/dist/autosize.min.js"></script>
+        <!-- jQuery autocomplete -->
+        <script src="assets/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+        <!-- starrr -->
+        <script src="assets/vendors/starrr/dist/starrr.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="assets/build/js/custom.min.js"></script>
     </body>

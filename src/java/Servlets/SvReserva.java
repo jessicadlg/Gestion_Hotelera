@@ -80,7 +80,8 @@ public class SvReserva extends HttpServlet {
         }
         long idHuesped = Long.parseLong(request.getParameter("idHuesped"));
         int cantP = Integer.parseInt(request.getParameter("cantP"));
-        long dni_empleado = Long.parseLong(request.getParameter("dni_empleado"));
+        int idUsu = Integer.parseInt(request.getParameter("idUsu"));
+        //long dni_empleado = Long.parseLong(request.getParameter("dni_empleado"));
         int idHab = Integer.parseInt(request.getParameter("idHab"));
 
         //pruebo traer p mostrar solo ese id
@@ -95,7 +96,7 @@ public class SvReserva extends HttpServlet {
         request.getSession().setAttribute("fecha_reserva", fechaNuevaR);
         request.getSession().setAttribute("idHuesped", idHuesped);
         request.getSession().setAttribute("cantP", cantP);
-        request.getSession().setAttribute("dni_empleado", dni_empleado);
+        request.getSession().setAttribute("idUsu", idUsu);
         request.getSession().setAttribute("idHab", idHab);
 /*recorro p conseguir el monto segun habitacion*/
         Controladora control = new Controladora();
@@ -117,12 +118,11 @@ public class SvReserva extends HttpServlet {
         Boolean autorizado = control.comprobarReserva(fechaInicio, fechaSalida, idHab);
 
         if (autorizado == true) {
-            control.crearAltaReserva(fechaInicio, fechaSalida, fechaReserva, cantP, idHab, idHuesped, dni_empleado, montoTotal);
+            control.crearAltaReserva(fechaInicio, fechaSalida, fechaReserva, cantP, idHab, idHuesped, idUsu, montoTotal);
             response.sendRedirect("ticketReserva.jsp");
 
         } else {
             response.sendRedirect("errorReserva.jsp");
-
         }
     }
 
