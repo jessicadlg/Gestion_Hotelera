@@ -204,16 +204,17 @@
                             <p>Fecha de reserva: <%=session.getAttribute("fecha_reserva")%></p> 
                             <p>Fecha de entrada: <%=session.getAttribute("fecha_entrada")%></p> 
                             <p>Fecha de salida: <%=session.getAttribute("fecha_salida")%></p> 
-                            <p>Nro de Huepsed: <%=session.getAttribute("idHuesped")%></p> 
+                            <p>Nro de Huesped: <%=session.getAttribute("idHuesped")%></p> 
                             <p>Nro de Habitacion: <%=session.getAttribute("idHab")%></p> 
-                            <p>Cantidad de personas: <%=session.getAttribute("cantPersonas")%></p> 
+                            <p>Cantidad de personas: <%=session.getAttribute("cantP")%></p> 
                             <p>Numero del Empleado: <%=session.getAttribute("dni_empleado")%></p> 
-                            <p>Monto total:<%=session.getAttribute("dias")%></p> 
+                            <p>Monto total:   <%String mTotal;
+                                mTotal = session.getAttribute("resultado").toString();
+                                out.println(mTotal);%></p> 
 
                             <div class="d-flex justify-content-center">
                                 <a href="verReservas.jsp" ><button class="btn btn-secondary" type="submit">Ver reservas</button></a>
                                 <a href="#" ><button class="btn btn-dark" type="submit">Imprimir</button></a>
-
                             </div>
                         </div>
                     </div>

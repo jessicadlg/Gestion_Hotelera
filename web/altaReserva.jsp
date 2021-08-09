@@ -189,6 +189,7 @@
                                                 <select name="idHab" id="idHab" class="form-control">
                                                     <%for (Habitacion hab : listaHabitaciones) {%>
                                                     <option value="<%=hab.getId_numHab()%>"> <%=hab.getTematica()%> </option>
+
                                                     <%}%>
                                                 </select>
                                             </div>

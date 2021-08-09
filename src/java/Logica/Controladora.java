@@ -10,7 +10,6 @@ import java.util.List;
 public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
-    private static Usuario usu;
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 
     public boolean comprobarIngreso(String usuario, String contra) {
@@ -126,37 +125,46 @@ public class Controladora {
         controlPersis.modificarHuesped(hues);
     }
 
-     public Boolean crearAltaReserva(Date fechaInicio, Date fechaSalida, Date fechaReserva, int cantP, int idHab, long idHuesped, long dni_empleado) {
-       
-         Reserva nuevaReserva = new Reserva();
+    public Boolean comprobarReserva(Date fechaInicio, Date fechaSalida, int idHab) {
+        Reserva nuevaReserva = new Reserva();
         List<Reserva> listaReservas = controlPersis.traerReservas();
-
+        List<Habitacion> listaHabitaciones = controlPersis.traerHabitaciones();
+        for (Habitacion habi : listaHabitaciones) {
+            if (habi.getId_numHab() == (idHab)) {
+                listaReservas = habi.getListaReservas();
+                System.out.println("listadoR" + listaReservas);
+                return true;
+            } else {
+                System.out.println("NO ENTRO A A HABITACION");
+            }
+                        /*
         //if (listaReservas != null) {
-            for (Reserva re : listaReservas) {
-                if (re.getHabitacion().getId_numHab()==(idHab))  {
-                    System.out.println("NO SE PUEDE HACER LA RESERVA");
-                     return false;
-                } else {
-                     System.out.println("si RESERVA");
+        for (Reserva re : listaReservas) {
+            if (re.getHabitacion().getId_numHab() == (idHab)) {
+                System.out.println("NO SE PUEDE HACER LA RESERVA");
+
+                return false;
+            } else {
+                System.out.println("si RESERVA");
                 re.setCheckIn(fechaInicio);
                 re.setCheckOut(fechaSalida);
-                re.setFechaDeCarga(fechaReserva);
-                re.setCantidadPersonas(cantP);
-              //  re.setHabitacion(idHab);
-                
-
-                controlPersis.crearReserva(re);
-                    
-                }
+                              //  re.setHabitacion(idHab);
             }
-        
-        return true;
+        }
+            return true;
+        }*/
+        }
+        return false;
     }
-    //mi metodo:
-   
-    ///////////////////////////////////ADAPTANDO A MARCE
+        //mi metodo:
+         public void crearAltaReserva(Date fechaInicio, Date fechaSalida, Date fechaReserva, int cantP, int idHab, long idHuesped, long dni_empleado,double montoTotal) {
+             Reserva re = new Reserva();
+             List<Habitacion> listaHabitaciones = controlPersis.traerHabitaciones();
+            
+         }
 
-   /* public Boolean crearReserva(Date fechaInicio, Date fechaSalida, Date fechaReserva, int dias, int cantP,
+        ///////////////////////////////////ADAPTANDO A MARCE
+    /*public Boolean crearReserva(Date fechaInicio, Date fechaSalida, Date fechaReserva, int dias, int cantP,
             int idHab, long idHuesped, long id_empleado) {
         List<Habitacion> listaHabitaciones = controlPersis.traerHabitaciones();
         //=!     Empleado emple = traerEmpleados(id_empleado);
@@ -186,7 +194,6 @@ public class Controladora {
     }
 */
 //fin
-
     public List<Reserva> traerReservas() {
         return controlPersis.traerReservas();
     }
