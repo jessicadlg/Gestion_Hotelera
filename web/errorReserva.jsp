@@ -1,11 +1,3 @@
-<%@page import="Logica.Reserva"%>
-<%@page import="Logica.Habitacion"%>
-<%@page import="Logica.Huesped"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
-<%@page import="Logica.Empleado"%>
-<%@page import="java.util.List"%>
-<%@page import="Logica.Controladora"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -76,7 +68,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>Panel de administracion</h3>
+                                <h3>Panel de administración</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -202,133 +194,85 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Listado de reservas</h4>
-                                </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                        <th>Fecha de reserva</th>
-                                        <th>Checkin</th>
-                                        <th>Checkout</th>
-                                        <th>Id Huesped</th>
-                                        <th>Cantidad de personas</th>
-                                        <th>Id habitación</th>
-                                        <th>Id empleado</th>
-                                        <th class="text-center">Acciones</th>
-                                        </thead>
-                                        <tbody>
-                                            <% Controladora control = new Controladora();
-                                                List<Reserva> listaReservas = control.traerReservas();
-                                                for (Reserva res : listaReservas) { %>
-                                            <tr>
-                                                <%SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-                                                    String feC = sdf.format(res.getFechaDeCarga());%>
-                                                <td><%=feC%></td>
-                                                <%String feI = sdf.format(res.getCheckIn());%>
-                                                <td><%=feI%></td>
-                                                <%String feS = sdf.format(res.getCheckOut());%>
-                                                <%--SIGUIENTE INTENTO TRAER UN HUESPED--%> <td><%=feS%></td>
-                                                <%long idHue = res.getHuesped().getId_numero();%>
-                                                <td><%=idHue%></td>
-                                                <%int cantP = res.getCantidadPersonas();%>
-                                                <td><%=cantP%></td>
-                                                <%int idHabi = res.getHabitacion().getId_numHab();%>
-                                                <td><%=idHabi%></td>
-                                                 <%String idEmp = res.getEmpleado().getDNI();%>
-                                                <td><%=idEmp%></td>
+                        <div class="col-md-12 col-sm-12 mx-auto m-5">
 
-                                                <%int id = res.getId_reserva();%> 
-
-                                                <td class="align-middle">
-                                                    <form name="borrarForm" action="SvEliminar" method="POST"> 
-                                                        <input type="hidden" name="id_numero" value="<%=id%>">
-                                                        <button type="submit" class="btn btn-danger btn-sm m-1"  onclick="alert('Eliminado correctamente')" data-title="Delete"><i class="fa fa-trash-o"></i> Eliminar </button>
-                                                    </form>
-                                                    <form name="editarForm" action="SvEditar" method="POST">
-                                                        <input type="hidden" name="id_numero" value="<%=id%>">
-                                                        <button type="submit" class="btn btn-info btn-sm m-1" data-title="Edit"><i class="fa fa-pencil"></i> Editar </button>
-                                                    </form>
-                                                </td>
-                                            </tr>   
-                                            <%}%>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="alert alert-danger alert-dismissible " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>No se puede realizar la reserva!</strong> 
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="col-md-12 col-sm-12 mx-auto m-4">
+
+                        <div class="d-flex justify-content-center">
+                            <a href="index.jsp" ><button class="btn btn-secondary" type="submit">Volver</button></a>
+                        </div>
+                    </div>
+                </div>    
+            </div>  
         </div>
-    </div >
+    </div>
     <!-- /page content -->
 
-</div>
-</div>
 
 
-<!-- footer content -->
-<footer class="footer">
-    <div class="container-fluid">
-        <p class="copyright text-center">
-            ©
-            <script>
-                document.write(new Date().getFullYear())
-            </script>
-            creado por<a href=""> Jessica Delgado</a>
-        </p>
-    </div>
-</footer>
-<!-- /footer content -->
-</div>
-</div>
 
-<!-- jQuery -->
-<script src="assets/vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="assets/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="assets/vendors/nprogress/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
-<!-- gauge.js -->
-<script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="assets/vendors/iCheck/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="assets/vendors/skycons/skycons.js"></script>
-<!-- Flot -->
-<script src="assets/vendors/Flot/jquery.flot.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.time.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
-<script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="assets/vendors/DateJS/build/date.js"></script>
-<!-- JQVMap -->
-<script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
-<script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-<script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="assets/vendors/moment/min/moment.min.js"></script>
-<script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<!-- Custom Theme Scripts -->
-<script src="assets/build/js/custom.min.js"></script>
+    <!-- footer content -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="copyright text-center">
+                ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                creado por<a href=""> Jessica Delgado</a>
+            </p>
+        </div>
+    </footer>
+    <!-- /footer content -->
+    <!-- jQuery -->
+    <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="assets/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="assets/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="assets/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="assets/vendors/Flot/jquery.flot.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="assets/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="assets/vendors/moment/min/moment.min.js"></script>
+    <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
+    <!-- Custom Theme Scripts -->
+    <script src="assets/build/js/custom.min.js"></script>
 </body>
-
 </html>
 
 

@@ -127,7 +127,7 @@
                                         <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-                                
+
                             </ul>
                         </nav>
                     </div>
@@ -162,27 +162,15 @@
                                                 <input name="fechaNac" type="date" placeholder="dd-mm-yyyy" class="form-control" id="fecha_nacimiento"
                                                        required>          
                                             </div>
-
                                             <div class="col-md-12 mb-3">
                                                 <label for="direccion">Dirección:</label>
-                                                <select name="direccion" id="direccion" class="form-control">
-                                                    <option value="">Ingrese una opcion..</option>
-                                                    <option value="Morón">Morón</option>
-                                                    <option value="Capital">Capital</option>
-                                                    <option value="Caballito">Caballito</option>
-                                                </select>
+                                                <input name="direccion" type="text" class="form-control" id="direccion" placeholder=""
+                                                       value="" required>
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="profesion">Profesión</label>
-                                                <select name="profesion" id="profesion"  class="form-control">
-                                                    <option value="">Ingrese su profesión..</option>
-                                                        <option value="Maestro">Maestro</option>
-                                                    <option value="Desarrollador">Desarrollador</option>
-                                                    <option value="Ingeniero">Ingeniero</option>
-                                                    <option value="Administrativa">Administrativa</option> 
-                                                    <option value=" Camionero"> Camionero</option>
-                                                    <option value="Recepcionista">Recepcionista</option>
-                                                </select>
+                                                <input name="profesion" type="text" class="form-control" id="profesion" placeholder=""
+                                                       value="" required>
                                             </div>
                                             <div class="mx-auto">
                                                 <button class="btn btn-secondary" type="submit">Enviar</button>

@@ -216,7 +216,7 @@
                                         <th>Id Huesped</th>
                                         <th>Cantidad de personas</th>
                                         <th>Id habitación</th>
-                                         <th>Id empleado</th>
+                                        <th>Id empleado</th>
                                         <th class="text-center">Acciones</th>
                                         </thead>
                                         <tbody>
@@ -237,9 +237,8 @@
                                                 <td><%=cantP%></td>
                                                 <%int idHabi = res.getHabitacion().getId_numHab();%>
                                                 <td><%=idHabi%></td>
-                                                 <%int idUsu = res.getUsuario().getId_usuario();%>
-                                                <td><%=idUsu%></td>
-                                                <td></td>
+                                                 <%String idEmp = res.getEmpleado().getDNI();%>
+                                                <td><%=idEmp%></td>
 
                                                 <%int id = res.getId_reserva();%> 
 

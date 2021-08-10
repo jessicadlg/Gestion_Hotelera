@@ -32,7 +32,6 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public List<Habitacion> traerHabitaciones() {
         return habJpa.findHabitacionEntities();
     }
@@ -43,17 +42,9 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void eliminarHabitacion2(int id_numero) {
-        try {
-           habJpa.destroy(id_numero);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
      public Habitacion buscarHabitacion(int id) {
         return habJpa.findHabitacion(id);
     }
-    
      public void modificarHabitacion(Habitacion hab){
         try {
             habJpa.edit(hab);
@@ -64,7 +55,6 @@ public class ControladoraPersistencia {
       public void crearAltaEmpleado(Empleado emp) {
         empJpa.create(emp);
     }
-      
        public List<Empleado> traerEmpleados() {
         return empJpa.findEmpleadoEntities();
     }
@@ -75,11 +65,9 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public Empleado buscarEmpleado(long id_numero) {
         return empJpa.findEmpleado(id_numero);
     }
-
     public void modificarEmpleado(Empleado emp) {
         try {
             empJpa.edit(emp);
@@ -100,11 +88,9 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public Huesped buscarHuesped(long id_numero) {
         return hueJpa.findHuesped(id_numero);
     }
-
     public void modificarHuesped(Huesped hues) {
         try {
             hueJpa.edit(hues);
@@ -120,7 +106,6 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public void crearAltaReserva(Reserva re) {
         try {
             reserJpa.create(re);
@@ -128,14 +113,7 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public void crearReserva(Reserva re) {
-        try {
-            reserJpa.create(re);
-        } catch (Exception ex) {
-            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    public List<Reserva> traerReservas() {
+       public List<Reserva> traerReservas() {
         return reserJpa.findReservaEntities();
     }
    

@@ -22,14 +22,13 @@ public class SvEliminar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int id = Integer.parseInt(request.getParameter("id"));
+ long id = Long.parseLong(request.getParameter("id"));
         System.out.println("la ID ES "  + id);
         
        Controladora control = new Controladora();
-        control.eliminarHabitacion(id);
-        //actualizo mi lista de empleados
-       // request.getSession().setAttribute("listaEmpleados", control.traerEmpleados());
-        response.sendRedirect("verHabitaciones.jsp");
+        control.eliminarHuesped(id);
+     
+        response.sendRedirect("verHuespedes.jsp");
     }
 
       @Override

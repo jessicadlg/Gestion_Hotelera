@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<%@page import="Logica.Huesped"%>
 <html lang="es">
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -10,7 +9,7 @@
         <link rel="icon" href="images/favicon.ico" type="image/ico" />
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Gestión hotelera</title>
+        <title> Gestión hotelera</title>
 
         <!-- Bootstrap -->
         <link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +45,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Las Termas</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-building-o"></i> <span>Hotel Paisajes</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -127,7 +126,6 @@
                                         <a class="dropdown-item"  href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Cerrar sessión</a>
                                     </div>
                                 </li>
-
                             </ul>
                         </nav>
                     </div>
@@ -137,111 +135,117 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 mx-auto">
+                        <div class="col-lg-12  col-sm-12 mx-auto">
                             <div class="card shadow-lg p-3 mb-5 bg-white ">
-                                <div class="card-header text-center">Registro de huesped</div>
+                                <div class="card-header text-center">Modificar datos del huesped</div>
                                 <div class="card-body">
-                                    <form action="SvHuesped" method="post">
+                                    <form action="SvEditar" method="get">
+                                        <!--  //traigo con la session-->
+                                        <%
+                                            Huesped hue = (Huesped) misession.getAttribute("huesped");
+                                            {%>
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3">
                                                 <label for="dni">DNI:</label>
-                                                <input name="dni" type="text" class="form-control" id="dni" placeholder="" value="" required>
+                                                <input name="dni" type="text" class="form-control" id="dni"  value="<%=hue.getDNI()%>" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="nombre">Nombre:</label>
-                                                <input name="nombre" type="text" class="form-control" id="nombre" placeholder="" value=""
+                                                <input name="nombre" type="text" class="form-control" id="nombre" placeholder="" value="<%=hue.getNombre()%>"
                                                        required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="apellido">Apellido</label>
-                                                <input name="apellido" type="text" class="form-control" id="apellido" placeholder=""
-                                                       value="" required>
+                                                <input name="apellido" type="text" class="form-control" id="apellido" value="<%=hue.getApellido()%>" required>
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="fechaNac">Fecha nacimiento:</label>
-                                                <input name="fechaNac" type="date" placeholder="dd-mm-yyyy" class="form-control" id="fecha_nacimiento"
-                                                       required>          
+                                                <input name="fechaNac" type="date" class="form-control" id="fecha_nacimiento" value="<%=hue.getFechaNac()%>"  required>          
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="direccion">Dirección:</label>
-                                                <input name="direccion" type="text" class="form-control" id="direccion" placeholder=""
+                                                <input name="direccion" type="text" class="form-control" id="direccion" value="<%=hue.getDireccion()%>"
                                                        value="" required>
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="profesion">Profesión</label>
-                                                <input name="profesion" type="text" class="form-control" id="profesion" placeholder=""
-                                                       value="" required>
+                                                <input name="profesion" type="text" class="form-control" id="profesion" value="<%=hue.getProfesion()%>" required>
                                             </div>
-                                            <div class="mx-auto">
-                                                <button class="btn btn-secondary" type="submit">Enviar</button>
+                                            <input type="hidden" name="id" value="<%=hue.getId_numero()%>">
+
+                                            <div class="mx-auto mb-3">
+                                                <button class="btn btn-info  mb-3" type="submit">Modificar</button>
                                             </div>
                                         </div>
-                                    </form>
+
                                 </div>
-                            </div>    
-                        </div>  
-                    </div>
-                </div>
-                <!-- /page content -->
-
+                                <%}%>
+                                </form>
+                            </div>
+                        </div>
+                    </div>    
+                </div>  
             </div>
+            <!-- page content -->
+
         </div>
+    </div>
+    <!-- /footer content -->s
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="copyright text-center">
+                ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                creado por<a href=""> Jessica Delgado</a>
+            </p>
+        </div>
+    </footer>
+    <!-- /footer content -->
+    <!-- jQuery -->
+    <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="assets/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="assets/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="assets/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="assets/vendors/Flot/jquery.flot.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="assets/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="assets/vendors/moment/min/moment.min.js"></script>
+    <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-
-        <!-- footer content -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="copyright text-center">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>
-                    creado por<a href=""> Jessica Delgado</a>
-                </p>
-            </div>
-        </footer>
-        <!-- /footer content -->
-        <!-- jQuery -->
-        <script src="assets/vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- FastClick -->
-        <script src="assets/vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="assets/vendors/nprogress/nprogress.js"></script>
-        <!-- Chart.js -->
-        <script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
-        <!-- gauge.js -->
-        <script src="assets/vendors/gauge.js/dist/gauge.min.js"></script>
-        <!-- bootstrap-progressbar -->
-        <script src="assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-        <!-- iCheck -->
-        <script src="assets/vendors/iCheck/icheck.min.js"></script>
-        <!-- Skycons -->
-        <script src="assets/vendors/skycons/skycons.js"></script>
-        <!-- Flot -->
-        <script src="assets/vendors/Flot/jquery.flot.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.pie.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.time.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.stack.js"></script>
-        <script src="assets/vendors/Flot/jquery.flot.resize.js"></script>
-        <!-- Flot plugins -->
-        <script src="assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="assets/vendors/flot.curvedlines/curvedLines.js"></script>
-        <!-- DateJS -->
-        <script src="assets/vendors/DateJS/build/date.js"></script>
-        <!-- JQVMap -->
-        <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-        <!-- bootstrap-daterangepicker -->
-        <script src="assets/vendors/moment/min/moment.min.js"></script>
-        <script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-        <!-- Custom Theme Scripts -->
-        <script src="assets/build/js/custom.min.js"></script>
-    </body>
+    <!-- Custom Theme Scripts -->
+    <script src="assets/build/js/custom.min.js"></script>
+</body>
 </html>
+
+
 
 

@@ -1,3 +1,4 @@
+<%@page import="Logica.Usuario"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -44,7 +45,7 @@
                 <div class="animate form login_form">
                     <section class="login_content">
                         <form>
-                           <% for (UsuarioAdmin usu : listaUsuarios) {
+                           <% for (Usuario usu : listaUsuarios) {
 
                             if (usu.getUser()!= null) {%>
                             <h1>Inicio de sesión</h1>
@@ -77,3 +78,4 @@
         </div>
     </body>
 </html>
+  

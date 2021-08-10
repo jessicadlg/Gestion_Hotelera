@@ -140,7 +140,7 @@
                         <div class="col-lg-12  col-sm-12 mx-auto">
                             <div id="alert1" class="alert alert-success" role="alert">
                                 <button type="button"  class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <strong>Resserva realizada exitosamente!</strong> 
+                                <strong>Reserva realizada exitosamente!</strong> 
                             </div> 
 
                             <p>Fecha de reserva: <%=session.getAttribute("fecha_reserva")%></p> 
@@ -149,7 +149,7 @@
                             <p>Nro de Huesped: <%=session.getAttribute("idHuesped")%></p> 
                             <p>Nro de Habitacion: <%=session.getAttribute("idHab")%></p> 
                             <p>Cantidad de personas: <%=session.getAttribute("cantP")%></p> 
-                            <p>Numero del Empleado: <%=session.getAttribute("idUsu")%></p> 
+                            <p>Numero del Empleado: <%=session.getAttribute("idEmp")%></p> 
                             <p>Monto total:   <%String mTotal;
                                 mTotal = session.getAttribute("resultado").toString();
                                 out.println(mTotal);%></p> 

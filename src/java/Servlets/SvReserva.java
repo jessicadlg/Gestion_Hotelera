@@ -4,6 +4,8 @@ import Logica.Controladora;
 import Logica.Empleado;
 import Logica.Habitacion;
 import Logica.Huesped;
+import Logica.Reserva;
+import Logica.Usuario;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,7 +45,6 @@ public class SvReserva extends HttpServlet {
         String mes = checkinJSP[1];
         String anno = checkinJSP[0];
         String fechaNueva = dia + "/" + mes + "/" + anno;
-//
         Date fechaInicio = new Date();
         try {
             fechaInicio = formato.parse(fechaNueva);
@@ -80,25 +81,11 @@ public class SvReserva extends HttpServlet {
         }
         long idHuesped = Long.parseLong(request.getParameter("idHuesped"));
         int cantP = Integer.parseInt(request.getParameter("cantP"));
-        int idUsu = Integer.parseInt(request.getParameter("idUsu"));
-        //long dni_empleado = Long.parseLong(request.getParameter("dni_empleado"));
+        long idEmp = Long.parseLong(request.getParameter("idEmp"));
         int idHab = Integer.parseInt(request.getParameter("idHab"));
 
-        //pruebo traer p mostrar solo ese id
-        /*Habitacion hab = control.buscarHabitacion(idHab);
-        
-          HttpSession misession = request.getSession();
-          misession.setAttribute("habitacion", hab);
-         */
- /*traiga la session y asignar los atributos p abrir en cualquier JSP */
-        request.getSession().setAttribute("fecha_entrada", fechaNueva);
-        request.getSession().setAttribute("fecha_salida", fechaNuevaC);
-        request.getSession().setAttribute("fecha_reserva", fechaNuevaR);
-        request.getSession().setAttribute("idHuesped", idHuesped);
-        request.getSession().setAttribute("cantP", cantP);
-        request.getSession().setAttribute("idUsu", idUsu);
-        request.getSession().setAttribute("idHab", idHab);
-/*recorro p conseguir el monto segun habitacion*/
+        /*Metodo que consigue el monto total de la reserva*/
+ /*recorro p conseguir el monto segun habitacion*/
         Controladora control = new Controladora();
         List<Habitacion> listaHabitaciones = control.traerHabitaciones();
         double precio = 0;
@@ -109,24 +96,48 @@ public class SvReserva extends HttpServlet {
         }
         double montoTotal = dias * precio;
         request.getSession().setAttribute("resultado", montoTotal);
-        /*System.out.println("T" + montoTotal);
-        System.out.println("Iddddddddd" + idHab);
-                  System.out.println("pRECIO" + precio);   
-        System.out.println("T" + montoTotal);
-        System.out.println("MIRAR todas las fechas" + fechaNueva + "-" + fechaNuevaC + "-" + fechaNuevaR);*/
- /*metodo para verificar reserva*/
-        Boolean autorizado = control.comprobarReserva(fechaInicio, fechaSalida, idHab);
+        /*Metodo que consigue el monto total de la reserva fin*/
 
+ /*traiga la session y asignar los atributos p abrir en cualquier JSP */
+        request.getSession().setAttribute("fecha_entrada", fechaNueva);
+        request.getSession().setAttribute("fecha_salida", fechaNuevaC);
+        request.getSession().setAttribute("fecha_reserva", fechaNuevaR);
+        request.getSession().setAttribute("idHuesped", idHuesped);
+        request.getSession().setAttribute("cantP", cantP);
+        request.getSession().setAttribute("idEmp", idEmp);
+        request.getSession().setAttribute("idHab", idHab);
+
+        /*try {
+            control.crearAltaReserva(fechaInicio, fechaSalida, fechaReserva, huespedReserva, cantP, habitacionReserva, empleadoReserva, montoTotal);
+        } catch (Exception ex) {
+            Logger.getLogger(SvReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //armar la respuesta  
+        response.sendRedirect("altaCorrecta.jsp");*/
+
+        List<Huesped> listaHuespedes = control.traerHuespedes();
+        for (Huesped lista : listaHuespedes) {
+            if (lista.getId_numero() == idHuesped) {
+                idHuesped = lista.getId_numero();
+            }
+        }
+        List<Empleado> listaEmpleados = control.traerEmpleados();
+        for (Empleado emp : listaEmpleados) {
+            if (emp.getId_numero() == idEmp) {
+                idEmp = emp.getId_numero();
+            }
+        }
+
+        /*metodo para verificar reserva*/
+ Boolean autorizado = control.comprobarReserva(fechaInicio, fechaSalida, idHab);
         if (autorizado == true) {
-            control.crearAltaReserva(fechaInicio, fechaSalida, fechaReserva, cantP, idHab, idHuesped, idUsu, montoTotal);
             response.sendRedirect("ticketReserva.jsp");
-
         } else {
             response.sendRedirect("errorReserva.jsp");
         }
+ /*metodo para verificar reserva FIN*/
     }
-
-    @Override
+     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>

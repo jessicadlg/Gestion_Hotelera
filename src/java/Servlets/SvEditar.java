@@ -3,7 +3,13 @@ package Servlets;
 import Logica.Controladora;
 import Logica.Empleado;
 import Logica.Habitacion;
+import Logica.Huesped;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,23 +28,40 @@ public class SvEditar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id_numero = Integer.parseInt(request.getParameter("id_numero"));
-        String tematica = request.getParameter("tematica");
-        String piso = request.getParameter("piso");
-        String tipoHabitacion = request.getParameter("tipo");
-        double precio = Double.parseDouble(request.getParameter("precio"));
-
-
-        Controladora control = new Controladora();
-        Habitacion hab = control.buscarHabitacion(id_numero);
-        hab.setTematica(tematica);
-        hab.setPiso(piso);
-        hab.setTipoHabitacion(tipoHabitacion);
-        hab.setPrecio(precio);
+ long id = Long.parseLong(request.getParameter("id"));
+        String dni = request.getParameter("dni");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String direccion = request.getParameter("direccion");
+        String profesion = request.getParameter("profesion");
+         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String[] fechaNac = request.getParameter("fechaNac").split("-");
+        String diaR = fechaNac[2];
+        String mesR = fechaNac[1];
+        String annoR = fechaNac[0];
+        String fechaNueva = diaR + "/" + mesR + "/" + annoR;
+        Date fecha= new Date();
        
-        control.modificarHabitacion(hab);
-        request.getSession().setAttribute("listaHabitaciones",control.traerHabitaciones());
-        response.sendRedirect("verHabitaciones.jsp");
+        try {
+            fecha = formato.parse(fechaNueva);
+        } catch (ParseException ex) {
+            Logger.getLogger(SvEditar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        Controladora control = new Controladora();
+        Huesped hues =control.buscarHuesped(id);
+
+        hues.setDNI(dni);
+        hues.setNombre(nombre);
+        hues.setApellido(apellido);
+        Date fechaDate = new Date(fechaNueva);
+        hues.setFechaNac(fechaDate);
+        hues.setDireccion(direccion);
+        hues.setProfesion(profesion);
+
+        control.modificarHuesped(hues);
+        request.getSession().setAttribute("listaHuespedes", control.traerHuespedes());
+        response.sendRedirect("verHuespedes.jsp");
 
     }
 
@@ -46,16 +69,16 @@ public class SvEditar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("id"));
 
         Controladora control = new Controladora();
-        Habitacion hab = control.buscarHabitacion(id);
+        Huesped hue = control.buscarHuesped(id);
 
         //seteo
         HttpSession misession = request.getSession();
 
-        misession.setAttribute("habitacion", hab);
-        response.sendRedirect("modificarHabitacion.jsp");
+        misession.setAttribute("huesped", hue);
+        response.sendRedirect("modificarHuesped.jsp");
     }
 
     @Override

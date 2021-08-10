@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario implements Serializable {
@@ -19,18 +20,17 @@ public class Usuario implements Serializable {
     @Basic
     String user;
     String password;
-
-    @OneToMany
-    List<Reserva>listaReservas;
+    
+    
     
     public Usuario() {
     }
 
-    public Usuario(int id_usuario, String user, String password, List<Reserva> listaReservas) {
+    public Usuario(int id_usuario, String user, String password) {
         this.id_usuario = id_usuario;
         this.user = user;
         this.password = password;
-        this.listaReservas = listaReservas;
+       
     }
 
     public int getId_usuario() {
@@ -56,15 +56,5 @@ public class Usuario implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public List<Reserva> getListaReservas() {
-        return listaReservas;
-    }
-
-    public void setListaReservas(List<Reserva> listaReservas) {
-        this.listaReservas = listaReservas;
-    }
-
     
-    
-}
+    }

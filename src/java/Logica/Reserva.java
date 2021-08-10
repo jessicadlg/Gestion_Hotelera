@@ -24,15 +24,13 @@ public class Reserva implements Serializable {
     Date checkOut;
     @Temporal(TemporalType.DATE)
     Date fechaDeCarga;
-    
-    
     int cantidadPersonas;
     @ManyToOne
     Habitacion habitacion;
     @ManyToOne
     Huesped huesped;
     @ManyToOne
-    Usuario usuario;
+   Empleado empleado;
 
     public Reserva() {
     }
@@ -45,7 +43,7 @@ public class Reserva implements Serializable {
         this.cantidadPersonas = cantidadPersonas;
         this.habitacion = habitacion;
         this.huesped = huesped;
-        this.usuario = usuario;
+       // this.usuario = usuario;
     }
 
     public int getId_reserva() {
@@ -104,14 +102,13 @@ public class Reserva implements Serializable {
         this.huesped = huesped;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
-    
     
 
     

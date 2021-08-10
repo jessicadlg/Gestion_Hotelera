@@ -164,9 +164,6 @@
                                                 <input name="fecha_salida" type="date" class="form-control" id="fecha_salida"
                                                        required>          
                                             </div>
-                                            <div class="col-md-6 mb-3 mx-auto">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-plus-square-o"  onclick="alert('esta disponible')"></i> Mostrar Disponibilidad</button>
-                                            </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="idHuesped">Identificación del Huesped</label>
                                                 <input name="idHuesped"  type="text" class="form-control" value="" id="idHuesped"
@@ -179,8 +176,8 @@
                                                        required> 
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="idUsu">Identificacion del empleado</label>
-                                                <input name="idUsu" type="text" class="form-control" id="idUsu"
+                                                <label for="idEmp">Identificacion del empleado</label>
+                                                <input name="idEmp" type="text" class="form-control" id="idEmp"
                                                        required>          
                                             </div>
                                             <div class="col-md-6 mb-3">
@@ -189,15 +186,12 @@
                                                 <select name="idHab" id="idHab" class="form-control">
                                                     <%for (Habitacion hab : listaHabitaciones) {%>
                                                     <option value="<%=hab.getId_numHab()%>"> <%=hab.getTematica()%> </option>
-
                                                     <%}%>
                                                 </select>
                                             </div>
-                                        </div>
-
-
-                                        <div class="mx-auto">
-                                            <button class="btn btn-secondary " type="submit">Enviar</button>
+                                            <div class="mx-auto">
+                                                <button class="btn btn-secondary " type="submit">Enviar</button>
+                                            </div>  
                                         </div>
                                 </div>
                                 </form>
